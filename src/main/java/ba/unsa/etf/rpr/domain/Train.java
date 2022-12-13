@@ -2,7 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Date;
 import java.util.Objects;
-
+/**
+ * Bean for train
+ * @author Hana Catic
+ * */
 public class Train {
     private int id;
     private String name;
