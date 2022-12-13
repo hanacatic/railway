@@ -21,6 +21,11 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
             String insert = "INSERT INTO RailwayStations(name) VALUES(?)";
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, item.getName());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+            return item;
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -29,6 +34,16 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
 
     @Override
     public RailwayStation update(RailwayStation item) {
+        try{
+            String insert = "UPDATE RailwayStations SET name = ? WHERE id = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getName());
+            stmt.setInt(2, item.getId());
+            stmt.executeUpdate();
+            return item;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
