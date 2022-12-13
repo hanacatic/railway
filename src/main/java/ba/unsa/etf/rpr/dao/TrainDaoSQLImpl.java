@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Train;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrainDaoSQLImpl implements TrainDao{
@@ -51,6 +52,21 @@ public class TrainDaoSQLImpl implements TrainDao{
 
     @Override
     public List<Train> getAll() {
+        List<Train> trains = new ArrayList<Train>();
+        try{
+            String query = "SELECT * FROM Trains";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Train train = new Train();
+                train.setId(rs.getInt(1));
+                train.setName(rs.getString(2));
+                train.setDateBought(rs.getDate(3));
+                trains.add(train);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
