@@ -10,7 +10,7 @@ public interface RailwayStationDao extends Dao{
     /**
      * Find a railway station by name
      * @param name of railway station to look for in database
-     * @return railway stations of given name
+     * @return railway station of given name
      * */
     RailwayStation searchByName(String name);
 }
