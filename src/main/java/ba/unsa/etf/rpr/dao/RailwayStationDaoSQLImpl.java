@@ -99,6 +99,20 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
 
     @Override
     public RailwayStation searchByName(String name) {
+        try{
+            String query = "SELECT * FROM RailwayStations WHERE name = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                RailwayStation station = new RailwayStation();
+                station.setId(rs.getInt(1));
+                station.setName(rs.getString(2));
+                return station;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 }
