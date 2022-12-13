@@ -11,7 +11,8 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
 
     public RailwayStationDaoSQLImpl(){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql6583526", "sql6583526", "");        }catch(Exception e){
+            connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql6583526", "sql6583526", "");
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
