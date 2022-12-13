@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RailwayStationDaoSQLImpl implements RailwayStationDao{
@@ -54,7 +55,21 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
 
     @Override
     public List getAll() {
-        return null;
+        List<RailwayStation> stations = new ArrayList<RailwayStation>();
+        try{
+            String query = "SELECT * FROM RailwayStations";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                RailwayStation station = new RailwayStation();
+                station.setId(rs.getInt("id"));
+                station.setName(rs.getString("name"));
+                stations.add(station);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return stations;
     }
 
     @Override
