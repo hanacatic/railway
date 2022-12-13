@@ -17,6 +17,17 @@ public class TrainDaoSQLImpl implements TrainDao{
     }
     @Override
     public Train add(Train item) {
+        try{
+            String insert = "INSERT INTO Trains(name) VALUES(?)";
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getName());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
