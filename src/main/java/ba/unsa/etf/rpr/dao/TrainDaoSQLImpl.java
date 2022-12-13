@@ -2,9 +2,7 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Train;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.List;
 
 public class TrainDaoSQLImpl implements TrainDao{
@@ -30,6 +28,16 @@ public class TrainDaoSQLImpl implements TrainDao{
     public Train getById(int id) {
         try{
             String query = "SELECT * FROM Trains WHERE id = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Train train = new Train();
+                train.setId(id);
+                train.setName(rs.getString(2));
+                train.setDateBought(rs.getDate(3));
+                return train;
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
