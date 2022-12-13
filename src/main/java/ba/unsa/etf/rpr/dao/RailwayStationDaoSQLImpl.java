@@ -2,10 +2,7 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.RailwayStation;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,23 +11,29 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
 
     public RailwayStationDaoSQLImpl(){
         try{
-
-        }catch(Exception e){
+            connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql6583526", "sql6583526", "");        }catch(Exception e){
             e.printStackTrace();
         }
     }
     @Override
-    public Object add(Object item) {
+    public RailwayStation add(RailwayStation item) {
+        try{
+            String insert = "INSERT INTO RailwayStations(name) VALUES(?)";
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getName());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public Object update(Object item) {
+    public RailwayStation update(RailwayStation item) {
         return null;
     }
 
     @Override
-    public Object getById(int id) {
+    public RailwayStation getById(int id) {
         try{
             String query = "SELECT * FROM RailwayStations WHERE id = ?";
             PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -61,7 +64,7 @@ public class RailwayStationDaoSQLImpl implements RailwayStationDao{
     }
 
     @Override
-    public List getAll() {
+    public List<RailwayStation> getAll() {
         List<RailwayStation> stations = new ArrayList<RailwayStation>();
         try{
             String query = "SELECT * FROM RailwayStations";

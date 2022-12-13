@@ -11,7 +11,7 @@ import java.util.List;
  * Dao interface for journey domain bean
  * @author Hana Catic
  * */
-public interface JourneyDao extends Dao{
+public interface JourneyDao extends Dao<Journey>{
     /**
      * Finds all journeys made by a given train
      * @param train which to look for

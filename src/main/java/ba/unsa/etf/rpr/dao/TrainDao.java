@@ -5,7 +5,7 @@ import ba.unsa.etf.rpr.domain.Train;
  * Dao interface for train domain bean
  * @author Hana Catic
  * */
-public interface TrainDao extends Dao{
+public interface TrainDao extends Dao<Train>{
     /**
      * Find a train by name
      * @param name of train to look for in database

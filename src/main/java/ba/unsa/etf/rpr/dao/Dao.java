@@ -5,7 +5,7 @@ import java.util.List;
  * Generic root Dao interface for all classes
  * @author Hana Catic
  * */
-public interface Dao <Type>{
+public interface Dao<Type>{
     /**
      * Saves entity in database
      * @param item to be saved in the database
