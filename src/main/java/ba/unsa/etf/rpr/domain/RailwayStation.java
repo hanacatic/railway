@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
-
+/**
+ * Bean for railway station
+ *@author Hana Catic*/
 public class RailwayStation {
     private int id;
     private String name;

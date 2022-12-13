@@ -3,7 +3,10 @@ package ba.unsa.etf.rpr.domain;
 import java.sql.Time;
 import java.util.Date;
 import java.util.Objects;
-
+/**
+ * Bean for journey
+ * @autor Hana Catic
+ * */
 public class Journey {
     private int id;
     private int trainId;
