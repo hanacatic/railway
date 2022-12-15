@@ -33,6 +33,16 @@ public class TrainDaoSQLImpl implements TrainDao{
 
     @Override
     public Train update(Train item) {
+        try{
+            String insert = "UPDATE Trains SET name = ? WHERE id = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getName());
+            stmt.setInt(2, item.getId());
+            stmt.executeUpdate();
+            return item;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
