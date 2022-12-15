@@ -4,11 +4,22 @@ import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
 public class JourneyDaoSQLImpl implements JourneyDao{
+    private Connection connection;
+
+    public JourneyDaoSQLImpl(){
+        try{
+            connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql6583526", "sql6583526", "");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     @Override
     public Journey add(Journey item) {
         return null;
