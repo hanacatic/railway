@@ -193,7 +193,7 @@ public class JourneyDaoSQLImpl implements JourneyDao{
     }
 
     @Override
-    public List<Journey> searchByDepartureTime(Date departureDate) {
+    public List<Journey> searchByDepartureDate(Date departureDate) {
         List<Journey> journeys = new ArrayList<Journey>();
         try{
             String query = "SELECT * FROM Journeys WHERE departureDate = ?";
@@ -219,7 +219,7 @@ public class JourneyDaoSQLImpl implements JourneyDao{
     }
 
     @Override
-    public List<Journey> searchByArrivalTime(Date arrivalDate) {
+    public List<Journey> searchByArrivalDate(Date arrivalDate) {
         List<Journey> journeys = new ArrayList<Journey>();
         try{
             String query = "SELECT * FROM Journeys WHERE arrivalDate = ?";
@@ -246,11 +246,53 @@ public class JourneyDaoSQLImpl implements JourneyDao{
 
     @Override
     public List<Journey> searchByDepartureTime(Time departureTime) {
-        return null;
+        List<Journey> journeys = new ArrayList<Journey>();
+        try{
+            String query = "SELECT * FROM Journeys WHERE departureTime = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setTime(1, departureTime);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Journey journey = new Journey();
+                journey.setId(rs.getInt("id"));
+                journey.setTrainId(rs.getInt("train"));
+                journey.setDepartureStationId(rs.getInt("departureStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setDepartureDate(rs.getDate("departureDate"));
+                journey.setArrivalDate(rs.getDate("arrivalDate"));
+                journey.setDepartureTime(rs.getTime("departureTime"));
+                journey.setArrivalTime(rs.getTime("arrivalTime"));
+                journeys.add(journey);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return journeys;
     }
 
     @Override
     public List<Journey> searchByArrivalTime(Time arrivalTime) {
-        return null;
+        List<Journey> journeys = new ArrayList<Journey>();
+        try{
+            String query = "SELECT * FROM Journeys WHERE arrivalTime = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setTime(1, arrivalTime);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Journey journey = new Journey();
+                journey.setId(rs.getInt("id"));
+                journey.setTrainId(rs.getInt("train"));
+                journey.setDepartureStationId(rs.getInt("departureStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setDepartureDate(rs.getDate("departureDate"));
+                journey.setArrivalDate(rs.getDate("arrivalDate"));
+                journey.setDepartureTime(rs.getTime("departureTime"));
+                journey.setArrivalTime(rs.getTime("arrivalTime"));
+                journeys.add(journey);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return journeys;
     }
 }
