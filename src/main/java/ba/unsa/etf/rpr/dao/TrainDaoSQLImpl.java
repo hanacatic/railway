@@ -100,6 +100,21 @@ public class TrainDaoSQLImpl implements TrainDao{
 
     @Override
     public Train searchByName(String name) {
+        try{
+            String query = "SELECT * FROM Trains WHERE name = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Train train = new Train();
+                train.setName(name);
+                train.setId(rs.getInt(1));
+                train.setDateBought(rs.getDate(3));
+                return train;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 }
