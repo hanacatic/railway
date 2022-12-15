@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +62,27 @@ public class JourneyDaoSQLImpl implements JourneyDao{
 
     @Override
     public List<Journey> getAll() {
-        return null;
+        List<Journey> journeys = new ArrayList<Journey>();
+        try{
+            String query = "SELECT * FROM Journeys";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Journey journey = new Journey();
+                journey.setId(rs.getInt("id"));
+                journey.setTrainId(rs.getInt("train"));
+                journey.setDepartureStationId(rs.getInt("departureStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setDepartureDate(rs.getDate("departureDate"));
+                journey.setArrivalDate(rs.getDate("arrivalDate"));
+                journey.setDepartureTime(rs.getTime("departureTime"));
+                journey.setArrivalTime(rs.getTime("arrivalTime"));
+                journeys.add(journey);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return journeys;
     }
 
     @Override
