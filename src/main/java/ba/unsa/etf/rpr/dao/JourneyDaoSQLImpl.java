@@ -36,6 +36,17 @@ public class JourneyDaoSQLImpl implements JourneyDao{
 
     @Override
     public Journey update(Journey item) {
+        try{
+            String insert = "INSERT INTO RaiwayStations(name) VALUES(?)";
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+            return item;
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
