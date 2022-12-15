@@ -4,9 +4,7 @@ import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Time;
+import java.sql.*;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +30,27 @@ public class JourneyDaoSQLImpl implements JourneyDao{
 
     @Override
     public Journey getById(int id) {
+        try{
+            String query = "SELECT * FROM Journeys WHERE id = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Journey journey = new Journey();
+                journey.setId(id);
+                journey.setTrainId(rs.getInt("train"));
+                journey.setDepartureStationId(rs.getInt("departureStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setDepartureDate(rs.getDate("departureDate"));
+                journey.setArrivalDate(rs.getDate("arrivalDate"));
+                journey.setDepartureTime(rs.getTime("departureTime"));
+                journey.setArrivalTime(rs.getTime("arrivalTime"));
+                return journey;
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
