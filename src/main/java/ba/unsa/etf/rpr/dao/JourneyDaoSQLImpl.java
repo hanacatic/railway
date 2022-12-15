@@ -21,6 +21,16 @@ public class JourneyDaoSQLImpl implements JourneyDao{
     }
     @Override
     public Journey add(Journey item) {
+        try{
+            String insert = "INSERT INTO Journeys(name) VALUES(?)"; //will need to be written differently because journey not defined by name
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
