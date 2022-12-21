@@ -14,7 +14,7 @@ public class JourneyDaoSQLImpl implements JourneyDao{
 
     public JourneyDaoSQLImpl(){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql6583526", "sql6583526", "");
+            connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPRbAZA", "freedb_hcatic1", "");
         }catch(Exception e){
             e.printStackTrace();
         }

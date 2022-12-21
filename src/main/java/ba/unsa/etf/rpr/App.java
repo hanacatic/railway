@@ -11,7 +11,7 @@ public class App {
     public static void main( String[] args )
     {
         RailwayStation station = new RailwayStation();
-        station.setName("Željeznička stanica Mostar");
+        station.setName("Željeznička stanica Sarajevo");
         RailwayStationDaoSQLImpl dao = new RailwayStationDaoSQLImpl();
         dao.add(station);
         System.out.println(station.getId());
