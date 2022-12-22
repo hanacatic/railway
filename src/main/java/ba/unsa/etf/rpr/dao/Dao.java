@@ -13,7 +13,7 @@ public interface Dao<Type>{
      * @param item to be saved in the database
      * @return saved item
      * */
-    Type add(Type item);/**
+    Type add(Type item) throws RailwayException;/**
      * Updates entity in database based on id
      * @param item entity to be updated
      * @return updated item
