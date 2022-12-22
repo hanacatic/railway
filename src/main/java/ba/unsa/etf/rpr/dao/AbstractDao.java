@@ -126,4 +126,9 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         return new AbstractMap.SimpleEntry<String, String>(columns.toString(), questions.toString());
     }
 
+    private String prepareUpdateParts(Map<String, Object> row){
+        StringBuilder columns = new StringBuilder();
+        return columns.toString();
+    }
+
 }
