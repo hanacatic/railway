@@ -66,4 +66,6 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     public Type add(Type item){return null;}
     public Type update(Type item){return null;}
 
+    public void delete(int id){}
+
 }
