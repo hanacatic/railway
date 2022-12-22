@@ -83,8 +83,20 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     }
 
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
-
-        return null;
+        StringBuilder columns = new StringBuilder();
+        StringBuilder questions = new StringBuilder();
+        int entries = 0;
+        for(Map.Entry<String, Object> entry: row.entrySet()){
+            entries++;
+            if(entry.getKey().equals("id")) continue;
+            columns.append(entry.getKey());
+            questions.append(entry.getValue());
+            if(entries != row.size()){
+                columns.append(",");
+                questions.append(",");
+            }
+        }
+        return new AbstractMap.SimpleEntry<String, String>(columns.toString(), questions.toString());
     }
 
 }
