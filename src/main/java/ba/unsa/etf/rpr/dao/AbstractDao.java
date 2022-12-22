@@ -12,7 +12,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
 
     }
 
-    public Connection getConnection(){ return null;}
+    public Connection getConnection(){ return this.connection;}
     public Type getById(int id){return null;}
     public List<Type> getAll() {return null;}
     public Type add(Type item){return null;}
