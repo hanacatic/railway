@@ -35,5 +35,5 @@ public interface Dao<Type>{
      * Gets list of all entities from database
      * @return List of all entities form database
      * */
-    List<Type> getAll();
+    List<Type> getAll() throws RailwayException;
 }
