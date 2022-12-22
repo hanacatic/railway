@@ -30,7 +30,7 @@ public interface Dao<Type>{
      * Hard delete of entity
      * @param id primary key of entity to be deleted from database
      * */
-    void delete(int id);
+    void delete(int id) throws RailwayException;
     /**
      * Gets list of all entities from database
      * @return List of all entities form database

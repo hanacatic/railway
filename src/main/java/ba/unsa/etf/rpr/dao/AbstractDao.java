@@ -66,6 +66,15 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     public Type add(Type item){return null;}
     public Type update(Type item){return null;}
 
-    public void delete(int id){}
+    public void delete(int id) throws RailwayException {
+        try{
+            String del = "DELETE FROM " + tableName + " WHERE id = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(del);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }catch(SQLException e){
+            throw new RailwayException(e.getMessage(), e);
+        }
+    }
 
 }
