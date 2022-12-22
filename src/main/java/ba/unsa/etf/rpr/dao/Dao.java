@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
+
 import java.util.List;
 /**
  * Generic root Dao interface for all classes
@@ -23,7 +25,7 @@ public interface Dao<Type>{
      * @param id primary key of entity
      * @return database entity
      * */
-    Type getById(int id);
+    Type getById(int id) throws RailwayException;
     /**
      * Hard delete of entity
      * @param id primary key of entity to be deleted from database
