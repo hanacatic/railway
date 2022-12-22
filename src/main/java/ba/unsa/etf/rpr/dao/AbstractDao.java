@@ -23,11 +23,13 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             e.printStackTrace();
         }
     }
-    public abstract Type row2object(ResultSet rs);
 
     public Connection getConnection(){
         return this.connection;
     }
+
+    public abstract Type row2object(ResultSet rs);
+    public abstract Map<String, Object> object2row(Type object);
 
     public Type getById(int id) throws RailwayException {
         try{
@@ -47,6 +49,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
+
     public List<Type> getAll() throws RailwayException {
         try{
             String query = "SELECT * FROM " + tableName;
@@ -63,7 +66,9 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
+
     public Type add(Type item){return null;}
+
     public Type update(Type item){return null;}
 
     public void delete(int id) throws RailwayException {
@@ -75,6 +80,11 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         }catch(SQLException e){
             throw new RailwayException(e.getMessage(), e);
         }
+    }
+
+    private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
+
+        return null;
     }
 
 }
