@@ -7,7 +7,7 @@ import java.util.Objects;
  * Bean for journey
  * @autor Hana Catic
  * */
-public class Journey {
+public class Journey implements Idable {
     private int id;
     private int trainId;
     private int departureStationId;
