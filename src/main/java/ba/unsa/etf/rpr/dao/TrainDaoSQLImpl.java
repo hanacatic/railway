@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class TrainDaoSQLImpl extends AbstractDao<Train> implements TrainDao{
     public TrainDaoSQLImpl(){
@@ -29,7 +30,11 @@ public class TrainDaoSQLImpl extends AbstractDao<Train> implements TrainDao{
 
     @Override
     public Map<String, Object> object2row(Train object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("id", object.getId());
+        row.put("name", object.getName());
+        row.put("dateBought", object.getDateBought());
+        return row;
     }
 
     @Override
