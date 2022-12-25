@@ -6,7 +6,7 @@ import java.util.Objects;
  * Bean for train
  * @author Hana Catic
  * */
-public class Train {
+public class Train implements Idable {
     private int id;
     private String name;
     private Date dateBought;
