@@ -4,7 +4,7 @@ import java.util.Objects;
 /**
  * Bean for railway station
  *@author Hana Catic*/
-public class RailwayStation {
+public class RailwayStation implements Idable {
     private int id;
     private String name;
 
