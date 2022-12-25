@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implements RailwayStationDao{
 
@@ -29,7 +30,10 @@ public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implem
 
     @Override
     public Map<String, Object> object2row(RailwayStation object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("id", object.getId());
+        row.put("name", object.getName());
+        return row;
     }
 
     @Override
