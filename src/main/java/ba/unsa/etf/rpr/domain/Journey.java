@@ -9,9 +9,9 @@ import java.util.Objects;
  * */
 public class Journey implements Idable {
     private int id;
-    private int trainId;
-    private int departureStationId;
-    private int arrivalStationId;
+    private Train train;
+    private RailwayStation departureStationId;
+    private RailwayStation arrivalStationId;
     private Date departureDate;
     private Date arrivalDate;
     private Time departureTime;
@@ -25,27 +25,27 @@ public class Journey implements Idable {
         this.id = id;
     }
 
-    public int getTrainId() {
-        return trainId;
+    public Train getTrain() {
+        return train;
     }
 
-    public void setTrainId(int trainId) {
-        this.trainId = trainId;
+    public void setTrain(Train train) {
+        this.train = train;
     }
 
-    public int getDepartureStationId() {
+    public RailwayStation getDepartureStationId() {
         return departureStationId;
     }
 
-    public void setDepartureStationId(int departureStationId) {
+    public void setDepartureStationId(RailwayStation departureStationId) {
         this.departureStationId = departureStationId;
     }
 
-    public int getArrivalStationId() {
+    public RailwayStation getArrivalStationId() {
         return arrivalStationId;
     }
 
-    public void setArrivalStationId(int arrivalStationId) {
+    public void setArrivalStationId(RailwayStation arrivalStationId) {
         this.arrivalStationId = arrivalStationId;
     }
 
@@ -85,7 +85,7 @@ public class Journey implements Idable {
     public String toString() {
         return "Journey{" +
                 "id=" + id +
-                ", trainId=" + trainId +
+                ", train=" + train +
                 ", departureStationId=" + departureStationId +
                 ", arrivalStationId=" + arrivalStationId +
                 ", departureDate=" + departureDate +
@@ -105,6 +105,6 @@ public class Journey implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, trainId, departureStationId, arrivalStationId, departureDate, arrivalDate, departureTime, arrivalTime);
+        return Objects.hash(id, train, departureStationId, arrivalStationId, departureDate, arrivalDate, departureTime, arrivalTime);
     }
 }
