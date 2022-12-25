@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 /**
  * Bean for journey
