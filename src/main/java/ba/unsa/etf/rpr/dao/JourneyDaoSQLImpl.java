@@ -6,10 +6,9 @@ import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.sql.Date;
+import java.util.*;
+
 
 public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDao{
 
@@ -38,7 +37,16 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
 
     @Override
     public Map<String, Object> object2row(Journey object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("id", object.getId());
+        row.put("trainId", object.getTrain().getId());
+        row.put("departureStationId", object.getDepartureStation().getId());
+        row.put("arrivalStationId", object.getArrivalStation().getId());
+        row.put("departureDate", object.getDepartureDate());
+        row.put("arrivalDate", object.getArrivalDate());
+        row.put("departureTime", object.getDepartureTime());
+        row.put("arrivalTime", object.getArrivalTime());
+        return row;
     }
 
     @Override
