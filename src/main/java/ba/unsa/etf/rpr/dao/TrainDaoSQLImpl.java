@@ -15,7 +15,16 @@ public class TrainDaoSQLImpl extends AbstractDao<Train> implements TrainDao{
 
     @Override
     public Train row2object(ResultSet rs) throws RailwayException {
-        return null;
+        try{
+            Train train = new Train();
+            train.setId(rs.getInt("id"));
+            train.setName(rs.getString("name"));
+            train.setDateBought(rs.getDate("dateBought"));
+            return train;
+        }
+        catch(Exception e){
+            throw new RailwayException(e.getMessage(), e);
+        }
     }
 
     @Override
