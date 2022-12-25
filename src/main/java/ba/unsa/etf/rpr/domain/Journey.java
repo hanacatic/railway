@@ -10,8 +10,8 @@ import java.util.Objects;
 public class Journey implements Idable {
     private int id;
     private Train train;
-    private RailwayStation departureStationId;
-    private RailwayStation arrivalStationId;
+    private RailwayStation departureStation;
+    private RailwayStation arrivalStation;
     private Date departureDate;
     private Date arrivalDate;
     private Time departureTime;
@@ -33,20 +33,20 @@ public class Journey implements Idable {
         this.train = train;
     }
 
-    public RailwayStation getDepartureStationId() {
-        return departureStationId;
+    public RailwayStation getDepartureStation() {
+        return departureStation;
     }
 
-    public void setDepartureStationId(RailwayStation departureStationId) {
-        this.departureStationId = departureStationId;
+    public void setDepartureStation(RailwayStation departureStation) {
+        this.departureStation = departureStation;
     }
 
-    public RailwayStation getArrivalStationId() {
-        return arrivalStationId;
+    public RailwayStation getArrivalStation() {
+        return arrivalStation;
     }
 
-    public void setArrivalStationId(RailwayStation arrivalStationId) {
-        this.arrivalStationId = arrivalStationId;
+    public void setArrivalStation(RailwayStation arrivalStation) {
+        this.arrivalStation = arrivalStation;
     }
 
     public Date getDepartureDate() {
@@ -86,8 +86,8 @@ public class Journey implements Idable {
         return "Journey{" +
                 "id=" + id +
                 ", train=" + train +
-                ", departureStationId=" + departureStationId +
-                ", arrivalStationId=" + arrivalStationId +
+                ", departureStationId=" + departureStation +
+                ", arrivalStationId=" + arrivalStation +
                 ", departureDate=" + departureDate +
                 ", arrivalDate=" + arrivalDate +
                 ", departureTime=" + departureTime +
@@ -105,6 +105,6 @@ public class Journey implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, train, departureStationId, arrivalStationId, departureDate, arrivalDate, departureTime, arrivalTime);
+        return Objects.hash(id, train, departureStation, arrivalStation, departureDate, arrivalDate, departureTime, arrivalTime);
     }
 }
