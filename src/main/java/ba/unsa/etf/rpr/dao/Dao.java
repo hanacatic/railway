@@ -19,7 +19,7 @@ public interface Dao<Type>{
      * @return updated item
      * */
 
-    Type update(Type item);
+    Type update(Type item) throws RailwayException;
     /**
      * Finds entity in database with given id
      * @param id primary key of entity

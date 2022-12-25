@@ -96,7 +96,28 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         }
     }
 
-    public Type update(Type item){return null;}
+    public Type update(Type item) throws RailwayException {
+        try {
+            Map<String, Object> row = object2row(item);
+            String updateColumns = prepareUpdateParts(row);
+            StringBuilder builder = new StringBuilder();
+            builder.append("UPDATE ").append(this.tableName).append(" SET ")
+                    .append(updateColumns).append(" WHERE id = ?");
+            PreparedStatement stmt = this.connection.prepareStatement(builder.toString());
+            int counter = 1;
+            for(Map.Entry<String, Object> entry : row.entrySet()){
+                if(entry.getKey().equals("id")) continue;
+                stmt.setObject(counter, entry.getValue());
+                counter ++;
+            }
+            stmt.setInt(counter, item.getId());
+            stmt.executeUpdate();
+            return item;
+        }
+        catch(Exception e){
+            throw new RailwayException(e.getMessage(), e);
+        }
+        }
 
     public void delete(int id) throws RailwayException {
         try{
