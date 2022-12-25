@@ -19,7 +19,21 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
 
     @Override
     public Journey row2object(ResultSet rs) throws RailwayException {
-        return null;
+        try{
+            Journey journey = new Journey();
+            journey.setId(rs.getInt("id"));
+            journey.setDepartureDate(rs.getDate("departureDate"));
+            journey.setArrivalDate(rs.getDate("arrivalDate"));
+            journey.setDepartureTime(rs.getTime("departureTime"));
+            journey.setArrivalTime(rs.getTime("arrivalTime"));
+            journey.setTrain(DaoFactory.trainDao().getById(rs.getInt("trainId")));
+            journey.setDepartureStation(DaoFactory.railwayStationDao().getById(rs.getInt("departureStationId")));
+            journey.setArrivalStation(DaoFactory.railwayStationDao().getById(rs.getInt("arrivalStationId")));
+            return journey;
+
+        }catch(Exception e) {
+            throw new RailwayException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -38,9 +52,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
@@ -64,9 +78,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
@@ -90,9 +104,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
@@ -116,9 +130,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
@@ -142,9 +156,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
@@ -168,9 +182,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
@@ -194,9 +208,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             while(rs.next()){
                 Journey journey = new Journey();
                 journey.setId(rs.getInt("id"));
-                journey.setTrainId(rs.getInt("train"));
+                /*journey.setTrainId(rs.getInt("train"));
                 journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));
+                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
                 journey.setDepartureDate(rs.getDate("departureDate"));
                 journey.setArrivalDate(rs.getDate("arrivalDate"));
                 journey.setDepartureTime(rs.getTime("departureTime"));
