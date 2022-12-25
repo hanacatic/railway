@@ -28,7 +28,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         return this.connection;
     }
 
-    public abstract Type row2object(ResultSet rs);
+    public abstract Type row2object(ResultSet rs) throws RailwayException;
     public abstract Map<String, Object> object2row(Type object);
 
     public Type getById(int id) throws RailwayException {
