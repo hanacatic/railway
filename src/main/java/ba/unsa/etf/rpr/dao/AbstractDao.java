@@ -50,8 +50,14 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
-    public Type executeQueryUnique(String query, Object[] params){
-        return null;
+    public Type executeQueryUnique(String query, Object[] params) throws RailwayException {
+        List<Type> result = executeQuery(query, params);
+        if(result != null && result.size() == 1){
+            return result.get(0);
+        }
+        else{
+            throw new RailwayException("Object not found.");
+        }
     }
     public Type getById(int id) throws RailwayException {
         try{
