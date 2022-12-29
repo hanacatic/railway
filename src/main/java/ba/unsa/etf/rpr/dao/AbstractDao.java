@@ -64,20 +64,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     }
 
     public List<Type> getAll() throws RailwayException {
-        try{
-            String query = "SELECT * FROM " + tableName;
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            List<Type> results = new ArrayList<Type>();
-            while(rs.next()){
-                Type object = row2object(rs);
-                results.add(object);
-            }
-            return results;
-        }
-        catch(SQLException e){
-            throw new RailwayException(e.getMessage(), e);
-        }
+        return executeQuery("SELECT * FROM " + tableName, null);
     }
 
     public Type add(Type item) throws RailwayException {
