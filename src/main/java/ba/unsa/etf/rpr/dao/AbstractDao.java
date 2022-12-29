@@ -60,22 +60,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         }
     }
     public Type getById(int id) throws RailwayException {
-        try{
-            String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
-                Type result = row2object(rs);
-                rs.close();
-                return result;
-            }else{
-                throw new RailwayException("Object not found.");
-            }
-        }
-        catch(SQLException e){
-            throw new RailwayException(e.getMessage(), e);
-        }
+        return executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
     }
 
     public List<Type> getAll() throws RailwayException {
