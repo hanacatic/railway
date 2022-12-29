@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Train;
 /**
  * Dao interface for train domain bean
@@ -11,5 +12,5 @@ public interface TrainDao extends Dao<Train>{
      * @param name of train to look for in database
      * @return train of given name
      * */
-    Train searchByName(String name);
+    Train searchByName(String name) throws RailwayException;
 }
