@@ -65,29 +65,8 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
     }
 
     @Override
-    public List<Journey> searchByDepartureDate(Date departureDate) {
-        List<Journey> journeys = new ArrayList<Journey>();
-        try{
-            String query = "SELECT * FROM Journeys WHERE departureDate = ?";
-            PreparedStatement stmt = this.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setDate(1, (java.sql.Date) departureDate); //CHECK WHAT'S UP WITH DATE?
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                Journey journey = new Journey();
-                journey.setId(rs.getInt("id"));
-                /*journey.setTrainId(rs.getInt("train"));
-                journey.setDepartureStationId(rs.getInt("departureStation"));
-                journey.setArrivalStationId(rs.getInt("arrivalStation"));*/
-                journey.setDepartureDate(rs.getDate("departureDate"));
-                journey.setArrivalDate(rs.getDate("arrivalDate"));
-                journey.setDepartureTime(rs.getTime("departureTime"));
-                journey.setArrivalTime(rs.getTime("arrivalTime"));
-                journeys.add(journey);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return journeys;
+    public List<Journey> searchByDepartureDate(Date departureDate) throws RailwayException {
+        return executeQuery("SELECT * FROM Journeys WHERE departureDate = ?", new Object[]{departureDate});
     }
 
     @Override
