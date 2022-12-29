@@ -1,0 +1,10 @@
+.loginBtn{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+.loginBtn{
+    -fx-background-color: lightgray;
+}
+.loginBtn{
+    -fx-background-color: gray;
+}

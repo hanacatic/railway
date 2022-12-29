@@ -18,7 +18,7 @@ public class AppFX extends Application {
         stage.setScene(scene);
         stage.setMinHeight(90);
         stage.setMinWidth(120);
-        //stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 
