@@ -35,7 +35,7 @@ public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implem
     }
 
     @Override
-    public RailwayStation searchByName(String name) {
-        return null;
+    public RailwayStation searchByName(String name) throws RailwayException {
+        return executeQueryUnique("SELECT * FROM RailwaStations WHERE name = ?", new Object[]{name});
     }
 }
