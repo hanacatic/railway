@@ -42,7 +42,7 @@ public interface JourneyDao extends Dao<Journey>{
      * @param arrivalDate date on which to look for arriving trains, journeys ending
      * @return list of journeys
      * */
-    List<Journey> searchByArrivalDate(Date arrivalDate);
+    List<Journey> searchByArrivalDate(Date arrivalDate) throws RailwayException;
     /**
      * Finds all trains leaving at a given time, all journeys starting at a given time
      * @param departureTime time when to look for departing trains, journeys starting
