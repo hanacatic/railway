@@ -48,7 +48,7 @@ public interface JourneyDao extends Dao<Journey>{
      * @param departureTime time when to look for departing trains, journeys starting
      * @return list of journeys
      * */
-    List<Journey> searchByDepartureTime(Time departureTime);
+    List<Journey> searchByDepartureTime(Time departureTime) throws RailwayException;
     /**
      * Finds all trains arriving at a given time, all journeys ending at a given time
      * @param arrivalTime time when to look for arriving trains, journeys ending
