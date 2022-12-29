@@ -50,6 +50,9 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
+    public Type executeQueryUnique(String query, Object[] params){
+        return null;
+    }
     public Type getById(int id) throws RailwayException {
         try{
             String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
