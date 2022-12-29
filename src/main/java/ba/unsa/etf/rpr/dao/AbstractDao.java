@@ -31,6 +31,9 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     public abstract Type row2object(ResultSet rs) throws RailwayException;
     public abstract Map<String, Object> object2row(Type object);
 
+    public List<Type> executeQuery(String query, Object[] params){
+        return null;
+    }
     public Type getById(int id) throws RailwayException {
         try{
             String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
