@@ -31,8 +31,24 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     public abstract Type row2object(ResultSet rs) throws RailwayException;
     public abstract Map<String, Object> object2row(Type object);
 
-    public List<Type> executeQuery(String query, Object[] params){
-        return null;
+    public List<Type> executeQuery(String query, Object[] params) throws RailwayException {
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            if(params != null){
+                for(int i = 1; i <= params.length; i++){
+                    stmt.setObject(i, params[i-1]);
+                }
+            }
+            ResultSet rs = stmt.executeQuery();
+            List<Type> results = new ArrayList<>();
+            while(rs.next()){
+                results.add(row2object(rs));
+            }
+            return results;
+        }
+        catch(SQLException e){
+            throw new RailwayException(e.getMessage(), e);
+        }
     }
     public Type getById(int id) throws RailwayException {
         try{
