@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -36,6 +37,16 @@ public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implem
 
     @Override
     public RailwayStation searchByName(String name) throws RailwayException {
-        return executeQueryUnique("SELECT * FROM RailwaStations WHERE name = ?", new Object[]{name});
+        return executeQueryUnique("SELECT * FROM RailwayStations WHERE name = ?", new Object[]{name});
+    }
+
+    @Override
+    public List<RailwayStation> searchByCity(String city) throws RailwayException {
+        return executeQuery("SELECT * FROM RailwayStations WHERE city = ?", new Object[]{city});
+    }
+
+    @Override
+    public List<RailwayStation> searchByCountry(String country) throws RailwayException {
+        return executeQuery("SELECT * FROM RailwayStations WHERE country = ?", new Object[]{country});
     }
 }
