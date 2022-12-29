@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
@@ -17,7 +18,7 @@ public interface JourneyDao extends Dao<Journey>{
      * @param train which to look for
      * @return list of journeys
      * */
-    List<Journey> searchByTrain(Train train);
+    List<Journey> searchByTrain(Train train) throws RailwayException;
     /**
      * Finds all journeys from a given railway station
      * @param departureStation station in which to look for departing trains
