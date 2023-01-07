@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 
 public class DaoFactory {
-    private static final RailwayStationDao railwayStationDao = new RailwayStationDaoSQLImpl();
+    private static final RailwayStationDao railwayStationDao = RailwayStationDaoSQLImpl.getInstance();
     private static final TrainDao trainDao = new TrainDaoSQLImpl();
     private static final JourneyDao journeyDao = JourneyDaoSQLImpl.getInstance();
 

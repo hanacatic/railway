@@ -10,9 +10,20 @@ import java.util.TreeMap;
 
 public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implements RailwayStationDao{
 
-
-    public RailwayStationDaoSQLImpl() {
+    private static RailwayStationDaoSQLImpl instance = null;
+    private RailwayStationDaoSQLImpl() {
         super("railwayStations");
+    }
+
+    public static RailwayStationDaoSQLImpl getInstance(){
+        if( instance == null){
+            instance = new RailwayStationDaoSQLImpl();
+        }
+        return instance;
+    }
+
+    public static void removeInstance(){
+        instance = null;
     }
 
     @Override
