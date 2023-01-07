@@ -5,7 +5,7 @@ import ba.unsa.etf.rpr.domain.RailwayStation;
 public class DaoFactory {
     private static final RailwayStationDao railwayStationDao = new RailwayStationDaoSQLImpl();
     private static final TrainDao trainDao = new TrainDaoSQLImpl();
-    private static final JourneyDao journeyDao = new JourneyDaoSQLImpl();
+    private static final JourneyDao journeyDao = JourneyDaoSQLImpl.getInstance();
 
     private DaoFactory(){}
 

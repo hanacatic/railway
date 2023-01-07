@@ -11,11 +11,20 @@ import java.util.*;
 
 
 public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDao{
-
-    public JourneyDaoSQLImpl(){
+    private static JourneyDaoSQLImpl instance = null;
+    private JourneyDaoSQLImpl(){
         super("journeys");
     }
+    public static JourneyDaoSQLImpl getInstance(){
+        if(instance == null){
+            instance = new JourneyDaoSQLImpl();
+        }
+        return instance;
+    }
 
+    public static void removeInstance(){
+        instance = null;
+    }
     @Override
     public Journey row2object(ResultSet rs) throws RailwayException {
         try{
