@@ -8,8 +8,19 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class TrainDaoSQLImpl extends AbstractDao<Train> implements TrainDao{
-    public TrainDaoSQLImpl(){
+    private static TrainDaoSQLImpl instance = null;
+    private TrainDaoSQLImpl(){
         super("trains");
+    }
+
+    public static TrainDaoSQLImpl getInstance(){
+        if(instance == null){
+            instance = new TrainDaoSQLImpl();
+        }
+        return instance;
+    }
+    public static void removeInstance(){
+        instance = null;
     }
 
     @Override
