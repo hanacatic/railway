@@ -1,0 +1,10 @@
+.Btn{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+.Btn:hover{
+    -fx-background-color: lightgray;
+}
+.Btn:pressed{
+    -fx-background-color: gray;
+}
