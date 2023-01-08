@@ -13,7 +13,7 @@ public class App {
     public static void main( String[] args ) {
         RailwayStation station = new RailwayStation();
         station.setName("Željeznička stanica Sarajevo");
-        RailwayStationDaoSQLImpl dao = new RailwayStationDaoSQLImpl();
+        RailwayStationDaoSQLImpl dao = (RailwayStationDaoSQLImpl) DaoFactory.railwayStationDao();
         try{
             dao.add(station);
         }catch(Exception e){
