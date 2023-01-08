@@ -2,9 +2,9 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
-.loginBtn{
+.loginBtn:hover{
     -fx-background-color: lightgray;
 }
-.loginBtn{
+.loginBtn:pressed{
     -fx-background-color: gray;
 }

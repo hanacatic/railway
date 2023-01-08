@@ -24,9 +24,9 @@
             </rowConstraints>
             <children>
                 <TextField fx:id="fieldUsername" alignment="CENTER" GridPane.columnIndex="1" />
-                <Label alignment="CENTER" text="Lozinka:" textAlignment="CENTER" GridPane.rowIndex="1" />
+                <Label alignment="CENTER" text="Password:" textAlignment="CENTER" GridPane.rowIndex="1" />
                 <Button fx:id="loginBtn" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actionLogin" prefHeight="26.0" prefWidth="262.0" styleClass="loginBtn" text="Log in" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                <Label alignment="CENTER" text="Korisničko ime:" textAlignment="CENTER" />
+                <Label alignment="CENTER" text="Username:" textAlignment="CENTER" />
                 <PasswordField fx:id="filedPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
             <padding>

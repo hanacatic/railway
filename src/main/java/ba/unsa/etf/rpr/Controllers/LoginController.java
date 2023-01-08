@@ -26,6 +26,6 @@ public class LoginController {
         stage.setResizable(false);
         stage.show();
         Stage lastStage = (Stage) loginBtn.getScene().getWindow();
-        lastStage.close();
+        lastStage.hide();
     }
 }
