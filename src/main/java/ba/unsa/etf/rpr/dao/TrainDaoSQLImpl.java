@@ -10,7 +10,7 @@ import java.util.TreeMap;
 public class TrainDaoSQLImpl extends AbstractDao<Train> implements TrainDao{
     private static TrainDaoSQLImpl instance = null;
     private TrainDaoSQLImpl(){
-        super("trains");
+        super("Trains");
     }
 
     public static TrainDaoSQLImpl getInstance(){

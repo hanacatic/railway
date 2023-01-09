@@ -13,7 +13,7 @@ import java.util.*;
 public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDao{
     private static JourneyDaoSQLImpl instance = null;
     private JourneyDaoSQLImpl(){
-        super("journeys");
+        super("Journeys");
     }
     public static JourneyDaoSQLImpl getInstance(){
         if(instance == null){

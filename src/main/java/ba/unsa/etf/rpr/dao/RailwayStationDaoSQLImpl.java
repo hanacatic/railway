@@ -12,7 +12,7 @@ public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implem
 
     private static RailwayStationDaoSQLImpl instance = null;
     private RailwayStationDaoSQLImpl() {
-        super("railwayStations");
+        super("RailwayStations");
     }
 
     public static RailwayStationDaoSQLImpl getInstance(){
