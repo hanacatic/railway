@@ -98,9 +98,9 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <center>
-      <TableView fx:id="idColumn" prefHeight="170.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="trainsTable" prefHeight="170.0" prefWidth="580.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="117.59997415542603" text="Id" />
+          <TableColumn fx:id="idColumn" prefWidth="117.59997415542603" text="Id" />
           <TableColumn fx:id="nameColumn" prefWidth="224.79999542236328" text="Name" />
             <TableColumn fx:id="dateBoughtColumn" prefWidth="227.20004272460938" text="Date bought" />
         </columns>
