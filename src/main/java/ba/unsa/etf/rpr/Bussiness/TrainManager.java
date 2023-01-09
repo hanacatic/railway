@@ -45,4 +45,9 @@ public class TrainManager {
             throw e;
         }
     }
+    public Train update(Train train) throws RailwayException {
+        validateTrainName(train.getName());
+        validateTrainDateBought(train.getDateBought());
+        return DaoFactory.trainDao().update(train);
+    }
 }
