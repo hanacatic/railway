@@ -12,13 +12,10 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class AppFX extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/home.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         stage.setTitle("Prijava!");
         stage.setScene(scene);
-        stage.setMinHeight(90);
-        stage.setMinWidth(120);
-        stage.setResizable(false);
         stage.show();
     }
 

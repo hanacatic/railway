@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="438.0" minWidth="598.0" prefHeight="438.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <DialogPane prefHeight="78.0" prefWidth="580.0" BorderPane.alignment="CENTER">
          <header>
@@ -39,7 +39,7 @@
                   <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1">
                      <children>
                         <Label prefHeight="18.0" prefWidth="89.0" text="Name:" />
-                        <TextField alignment="CENTER" prefHeight="27.0" prefWidth="256.0">
+                        <TextField fx:id="trainName" alignment="CENTER" prefHeight="27.0" prefWidth="256.0">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -52,7 +52,7 @@
                   <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label prefHeight="18.0" prefWidth="190.0" text="Date bought:" />
-                        <DatePicker prefHeight="26.0" prefWidth="357.0" />
+                        <DatePicker fx:id="trainDateBought" prefHeight="26.0" prefWidth="357.0" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

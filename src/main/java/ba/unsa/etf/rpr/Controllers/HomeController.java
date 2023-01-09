@@ -20,11 +20,11 @@ public class HomeController {
 
     public void openTrainEdit(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/train.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         stage.setScene(scene);
-        stage.setMinHeight(280);
-        stage.setMinWidth(150);
+        stage.setMinHeight(90);
+        stage.setMinWidth(120);
         stage.setResizable(false);
         stage.show();
     }

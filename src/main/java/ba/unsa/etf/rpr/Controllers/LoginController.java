@@ -17,15 +17,11 @@ public class LoginController {
 
     public void actionLogin(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/train.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        stage.setTitle("Railway Stations");
         stage.setScene(scene);
-        stage.setMinHeight(280);
-        stage.setMinWidth(150);
-        stage.setResizable(false);
         stage.show();
         Stage lastStage = (Stage) loginBtn.getScene().getWindow();
-        lastStage.hide();
+        lastStage.close();
     }
 }
