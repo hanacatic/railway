@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.domain.Train;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 
 public class TrainManager {
     public void validateTrainName(String name) throws RailwayException {
@@ -49,5 +50,8 @@ public class TrainManager {
         validateTrainName(train.getName());
         validateTrainDateBought(train.getDateBought());
         return DaoFactory.trainDao().update(train);
+    }
+    public List<Train> getAll() throws RailwayException {
+        return DaoFactory.trainDao().getAll();
     }
 }
