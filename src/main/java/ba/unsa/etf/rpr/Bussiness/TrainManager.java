@@ -16,8 +16,8 @@ public class TrainManager {
         }
     }
     public void validateTrainDateBought(Date dateBought) throws RailwayException {
-        if(dateBought == null && dateBought.toLocalDate().isAfter(LocalDate.now(ZoneId.systemDefault()))){
-            throw new RailwayException("Date of train purchase can not be in the future.");
+        if(dateBought == null || dateBought.toLocalDate().isAfter(LocalDate.now(ZoneId.systemDefault()))){
+            throw new RailwayException("Date of train purchase cannot be in the future.");
         }
     }
 
@@ -30,7 +30,7 @@ public class TrainManager {
         try{
             return DaoFactory.trainDao().add(train);
         }catch(RailwayException e){
-            if(e.getMessage().contains("UQ_NAME")){
+            if(e.getMessage().contains("UNIQUE")){
                 throw new RailwayException("Train with the same name exists.");
             }
             throw e;
