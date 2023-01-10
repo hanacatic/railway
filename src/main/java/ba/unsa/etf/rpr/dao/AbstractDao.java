@@ -75,9 +75,10 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             StringBuilder builder = new StringBuilder();
             builder.append("INSERT INTO ").append(this.tableName);
             builder.append(" (").append(columns.getKey()).append(") ");
-            builder.append(" (").append(columns.getValue()).append(") ");
+            builder.append("VALUES (").append(columns.getValue()).append(") ");
 
-            PreparedStatement stmt = this.connection.prepareStatement(builder.toString());
+            //System.out.println(builder.toString());
+            PreparedStatement stmt = this.connection.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for(Map.Entry<String, Object> entry:row.entrySet()){
                 if(entry.getKey().equals("id")) continue;
@@ -133,16 +134,16 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
         StringBuilder questions = new StringBuilder();
-        int entries = 1;
+        int entries = 0;
         for(Map.Entry<String, Object> entry: row.entrySet()){
+            entries++;
             if(entry.getKey().equals("id")) continue;
             columns.append(entry.getKey());
-            questions.append(entry.getValue());
+            questions.append("?");
             if(entries != row.size()){
                 columns.append(",");
                 questions.append(",");
             }
-            entries++;
         }
         return new AbstractMap.SimpleEntry<String, String>(columns.toString(), questions.toString());
     }
