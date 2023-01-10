@@ -11,14 +11,6 @@ import ba.unsa.etf.rpr.domain.RailwayStation;
  */
 public class App {
     public static void main( String[] args ) {
-        RailwayStation station = new RailwayStation();
-        station.setName("Željeznička stanica Sarajevo");
-        RailwayStationDaoSQLImpl dao = (RailwayStationDaoSQLImpl) DaoFactory.railwayStationDao();
-        try{
-            dao.add(station);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        System.out.println(station.getId());
+
     }
 }

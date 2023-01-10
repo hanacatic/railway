@@ -57,6 +57,15 @@ public class TrainController {
 
 
     public void updateTrain(ActionEvent actionEvent) {
+        try{
+            Train train = (Train) trainsTable.getSelectionModel().getSelectedItem();
+            train.setName(trainName.getText());
+            train.setDateBought(Date.valueOf(trainDateBought.getValue()));
+            train = trainManager.update(train);
+            refreshTrains();
+        } catch (RailwayException e) {
+            throw new RuntimeException(e.getMessage());//new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
     public void deleteTrain(ActionEvent actionEvent) {
