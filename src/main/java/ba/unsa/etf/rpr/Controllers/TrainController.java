@@ -26,6 +26,12 @@ public class TrainController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Train, String>("name"));
         dateBoughtColumn.setCellValueFactory(new PropertyValueFactory<Train, Date>("dateBought"));
         refreshTrains();
+        trainsTable.getSelectionModel().selectedItemProperty().addListener((obs, o, n)->{
+            if(n != null){
+                    trainName.setText(((Train) n).getName());
+                    trainDateBought.setValue(((Train) n).getDateBought().toLocalDate());
+                }
+            });
     }
 
     private void refreshTrains(){
@@ -46,6 +52,20 @@ public class TrainController {
             refreshTrains();
         } catch (RailwayException e) {
             throw new RuntimeException(e.getMessage());//new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
+
+    public void updateTrain(ActionEvent actionEvent) {
+    }
+
+    public void deleteTrain(ActionEvent actionEvent) {
+        try{
+            Train train = (Train) trainsTable.getSelectionModel().getSelectedItem();
+            trainManager.delete(train.getId());
+            refreshTrains();
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
 }
