@@ -77,7 +77,6 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             builder.append(" (").append(columns.getKey()).append(") ");
             builder.append("VALUES (").append(columns.getValue()).append(") ");
 
-            //System.out.println(builder.toString());
             PreparedStatement stmt = this.connection.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for(Map.Entry<String, Object> entry:row.entrySet()){
@@ -150,14 +149,14 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
 
     private String prepareUpdateParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
-        int entries = 1;
+        int entries = 0;
         for(Map.Entry<String, Object> entry: row.entrySet()){
+            entries ++;
             if(entry.getKey().equals("id")) continue;
             columns.append(entry.getKey()).append("= ?");
             if(entries != row.size()){
                 columns.append(",");
             }
-            entries ++;
         }
         return columns.toString();
     }
