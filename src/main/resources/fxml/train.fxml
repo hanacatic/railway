@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -22,7 +21,8 @@
          <header>
             <GridPane hgap="5.0" vgap="5.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.6000244140625" minWidth="10.0" prefWidth="215.99998779296874" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.6000244140625" minWidth="10.0" prefWidth="210.40001678466797" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.8000152587891" minWidth="10.0" prefWidth="115.19998321533205" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.8000152587891" minWidth="10.0" prefWidth="340.80001220703133" />
                </columnConstraints>
                <rowConstraints>
@@ -36,29 +36,9 @@
                         <Font name="System Italic" size="17.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="89.0" text="Name:" />
-                        <TextField fx:id="trainName" alignment="CENTER" prefHeight="27.0" prefWidth="256.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="190.0" text="Date bought:" />
-                        <DatePicker fx:id="trainDateBought" prefHeight="26.0" prefWidth="357.0" />
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </HBox>
-                  <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label prefHeight="18.0" prefWidth="89.0" text="Name:" GridPane.columnIndex="1" />
+                  <Label prefHeight="18.0" prefWidth="135.0" text="Date bought:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#addTrain" prefHeight="26.0" prefWidth="104.0" styleClass="Btn" text="Add" textAlignment="CENTER">
                            <padding>
@@ -80,6 +60,12 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                      </padding>
                   </ButtonBar>
+                  <TextField fx:id="trainName" alignment="CENTER" prefHeight="27.0" prefWidth="256.0" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <DatePicker fx:id="trainDateBought" prefHeight="26.0" prefWidth="357.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
