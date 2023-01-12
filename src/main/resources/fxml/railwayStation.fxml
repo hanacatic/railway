@@ -85,8 +85,8 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="stationCity" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="stationCountry" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="stationCity" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="stationCountry" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" />
