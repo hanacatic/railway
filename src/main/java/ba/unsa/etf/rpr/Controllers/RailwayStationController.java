@@ -64,5 +64,12 @@ public class RailwayStationController {
     }
 
     public void deleteStation(ActionEvent actionEvent) {
+        try{
+            RailwayStation station = (RailwayStation) stationsTable.getSelectionModel().getSelectedItem();
+            stationManager.delete(station.getId());
+            refreshStations();
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
