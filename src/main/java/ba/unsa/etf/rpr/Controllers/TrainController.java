@@ -64,7 +64,7 @@ public class TrainController {
             train = trainManager.update(train);
             refreshTrains();
         } catch (RailwayException e) {
-            throw new RuntimeException(e.getMessage());//new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
 

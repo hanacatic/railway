@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import jdk.internal.util.SystemProps;
 
 public class RailwayStationController {
     private final RailwayStationManager stationManager = new RailwayStationManager();
@@ -61,6 +62,17 @@ public class RailwayStationController {
     }
 
     public void updateStation(ActionEvent actionEvent) {
+        try{
+            RailwayStation station = (RailwayStation) stationsTable.getSelectionModel().getSelectedItem();
+            station.setName(stationName.getText());
+            station.setAddress(stationAddress.getText());
+            station.setCity(stationCity.getText());
+            station.setCountry(stationCountry.getText());
+            station = stationManager.update(station);
+            refreshStations();
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
     public void deleteStation(ActionEvent actionEvent) {
