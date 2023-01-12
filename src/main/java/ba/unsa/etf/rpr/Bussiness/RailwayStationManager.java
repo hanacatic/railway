@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 
+import java.util.List;
+
 public class RailwayStationManager {
     public void validateStationName(String name) throws RailwayException {
         if(name == null || name.length() < 1 || name.length() > 255){
@@ -32,5 +34,7 @@ public class RailwayStationManager {
             throw e;
         }
     }
-
+    public List<RailwayStation> getAll() throws RailwayException {
+        return DaoFactory.railwayStationDao().getAll();
+    }
 }
