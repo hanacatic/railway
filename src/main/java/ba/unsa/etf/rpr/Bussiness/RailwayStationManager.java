@@ -15,7 +15,12 @@ public class RailwayStationManager {
 
     public void validateStationAddress(String address) throws RailwayException {
         if(address == null || address.length() < 1 || address.length() > 255){
-            throw new RailwayException("Station adress must be between 1 and 255 chars.");
+            throw new RailwayException("Station address must be between 1 and 255 chars.");
+        }
+    }
+    public void validateStationCity(String city) throws RailwayException {
+        if(city == null || city.length() < 1 || city.length() > 45){
+            throw new RailwayException("Station city name must be between 1 and 45 chars.");
         }
     }
 
