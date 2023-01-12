@@ -7,7 +7,7 @@ import java.util.Objects;
 public class RailwayStation implements Idable {
     private int id;
     private String name;
-    private String adress;
+    private String address;
     private String city;
     private String country;
 
@@ -27,12 +27,12 @@ public class RailwayStation implements Idable {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -56,7 +56,7 @@ public class RailwayStation implements Idable {
         return "RailwayStation{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
+                ", adress='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
                 '}';
@@ -72,6 +72,6 @@ public class RailwayStation implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, adress, city, country);
+        return Objects.hash(id, name, address, city, country);
     }
 }

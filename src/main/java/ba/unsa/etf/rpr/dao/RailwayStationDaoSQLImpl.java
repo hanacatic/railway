@@ -32,6 +32,9 @@ public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implem
             RailwayStation railwayStation = new RailwayStation();
             railwayStation.setId(rs.getInt("id"));
             railwayStation.setName(rs.getString("name"));
+            railwayStation.setAddress(rs.getString("address"));
+            railwayStation.setCity(rs.getString("city"));
+            railwayStation.setCountry(rs.getString("country"));
             return railwayStation;
         }catch(Exception e){
             throw new RailwayException(e.getMessage(), e);
@@ -43,6 +46,9 @@ public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implem
         Map<String, Object> row = new TreeMap<>();
         row.put("id", object.getId());
         row.put("name", object.getName());
+        row.put("address", object.getAddress());
+        row.put("city", object.getCity());
+        row.put("country", object.getCountry());
         return row;
     }
 
