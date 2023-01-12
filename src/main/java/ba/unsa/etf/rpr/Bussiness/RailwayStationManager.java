@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.Bussiness;
 
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.dao.Dao;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 
@@ -55,6 +56,13 @@ public class RailwayStationManager {
             }
             throw e;
         }
+    }
+    public RailwayStation update(RailwayStation station) throws RailwayException {
+        validateStationName(station.getName());
+        validateStationAddress(station.getAddress());
+        validateStationCity(station.getCity());
+        validateStationCountry(station.getCountry());
+        return DaoFactory.railwayStationDao().update(station);
     }
     public List<RailwayStation> getAll() throws RailwayException {
         return DaoFactory.railwayStationDao().getAll();
