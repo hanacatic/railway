@@ -43,7 +43,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="103.0" text="Adress:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="103.0" text="Address:" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -76,7 +76,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextField>
-                  <TextField fx:id="stationAdress" alignment="CENTER" prefHeight="26.0" prefWidth="299.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="stationAddress" alignment="CENTER" prefHeight="26.0" prefWidth="299.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Label prefHeight="27.0" prefWidth="128.0" text="City:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -110,7 +110,7 @@
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="43.19998121261597" text="Id" />
             <TableColumn fx:id="nameColumn" prefWidth="150.39999771118164" text="Name" />
-            <TableColumn fx:id="adressColumn" prefWidth="172.00001525878906" text="Adress" />
+            <TableColumn fx:id="addressColumn" prefWidth="172.00001525878906" text="Address" />
             <TableColumn fx:id="cityColumn" prefWidth="119.20001220703125" text="City" />
             <TableColumn fx:id="countryColumn" prefWidth="169.59982299804688" text="Country" />
          </columns>

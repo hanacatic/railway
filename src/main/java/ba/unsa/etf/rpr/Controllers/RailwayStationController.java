@@ -8,13 +8,13 @@ import javafx.scene.control.TextField;
 
 public class RailwayStationController {
     public TextField stationName;
-    public TextField stationAdress;
+    public TextField stationAddress;
     public ComboBox stationCity;
     public ComboBox stationCountry;
     public TableView stationsTable;
     public TableColumn idColumn;
     public TableColumn nameColumn;
-    public TableColumn adressColumn;
+    public TableColumn addressColumn;
     public TableColumn cityColumn;
     public TableColumn countryColumn;
 
