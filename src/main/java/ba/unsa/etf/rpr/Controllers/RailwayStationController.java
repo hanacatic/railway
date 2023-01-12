@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import jdk.internal.util.SystemProps;
 
 public class RailwayStationController {
     private final RailwayStationManager stationManager = new RailwayStationManager();
