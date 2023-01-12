@@ -8,4 +8,11 @@ public class RailwayStationManager {
             throw new RailwayException("Station name must be between 1 and 255 chars.");
         }
     }
+
+    public void validateStationAddress(String address) throws RailwayException {
+        if(address == null || address.length() < 1 || address.length() > 255){
+            throw new RailwayException("Station adress must be between 1 and 255 chars.");
+        }
+    }
+
 }
