@@ -29,4 +29,16 @@ public class HomeController {
         stage.setResizable(false);
         stage.show();
     }
+
+    public void openStationEdit(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/railwayStation.fxml"));
+        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        stage.setScene(scene);
+        stage.setTitle("Admin");
+        stage.setMinHeight(90);
+        stage.setMinWidth(120);
+        stage.setResizable(false);
+        stage.show();
+    }
 }

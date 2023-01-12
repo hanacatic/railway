@@ -34,6 +34,7 @@
           <Menu mnemonicParsing="true" text="_Edit">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#openTrainEdit" text="Train" />
+                  <MenuItem mnemonicParsing="false" onAction="#openStationEdit" text="Railway Station" />
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
