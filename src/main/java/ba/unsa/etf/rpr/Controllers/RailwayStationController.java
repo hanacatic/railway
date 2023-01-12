@@ -38,6 +38,17 @@ public class RailwayStationController {
         }
     }
     public void addStation(ActionEvent actionEvent) {
+        try{
+            RailwayStation station = new RailwayStation();
+            station.setName(stationName.getText());
+            station.setAddress(stationAddress.getText());
+            station.setCity(stationCity.getText());
+            station.setCountry(stationCountry.getText());
+            station = stationManager.add(station);
+            refreshStations();
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
     public void updateStation(ActionEvent actionEvent) {
