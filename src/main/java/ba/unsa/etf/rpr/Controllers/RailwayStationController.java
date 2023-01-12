@@ -1,12 +1,11 @@
 package ba.unsa.etf.rpr.Controllers;
 
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.RailwayStation;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RailwayStationController {
@@ -31,7 +30,12 @@ public class RailwayStationController {
     }
 
     private void refreshStations(){
-
+        try{
+            stationsTable.setItems(FXCollections.observableList(stationManager.getAll()));
+            stationsTable.refresh();
+        }catch(RailwayException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
     public void addStation(ActionEvent actionEvent) {
     }
