@@ -12,8 +12,8 @@ public class RailwayStationController {
     private final RailwayStationManager stationManager = new RailwayStationManager();
     public TextField stationName;
     public TextField stationAddress;
-    public ComboBox stationCity;
-    public ComboBox stationCountry;
+    public TextField stationCity;
+    public TextField stationCountry;
     public TableView stationsTable;
     public TableColumn<RailwayStation, String> idColumn;
     public TableColumn<RailwayStation, String> nameColumn;
