@@ -35,6 +35,8 @@ public class RailwayStationManager {
         }
         validateStationName(station.getName());
         validateStationAddress(station.getAddress());
+        validateStationCity(station.getCity());
+        validateStationCountry(station.getCountry());
         try{
             return DaoFactory.railwayStationDao().add(station);
         }catch(RailwayException e){
