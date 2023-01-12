@@ -46,6 +46,16 @@ public class RailwayStationManager {
             throw e;
         }
     }
+    public void delete(int stationId) throws RailwayException {
+        try{
+            DaoFactory.railwayStationDao().delete(stationId);
+        } catch (RailwayException e) {
+            if(e.getMessage().contains("FOREIGN KEY")){
+                throw new RailwayException("Cannot delete a station related to journeys. Delete all journeys related to a station before deleting a station.");
+            }
+            throw e;
+        }
+    }
     public List<RailwayStation> getAll() throws RailwayException {
         return DaoFactory.railwayStationDao().getAll();
     }

@@ -41,7 +41,7 @@ public class TrainManager {
             DaoFactory.trainDao().delete(trainId);
         } catch (RailwayException e) {
             if(e.getMessage().contains("FOREIGN KEY")){
-                throw new RailwayException("Cannot delete a train related to journeys. Delete all journeys related to a train before deleting train.");
+                throw new RailwayException("Cannot delete a train related to journeys. Delete all journeys related to a train before deleting a train.");
             }
             throw e;
         }
