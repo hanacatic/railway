@@ -30,6 +30,9 @@ public class RailwayStationController {
         countryColumn.setCellValueFactory(new PropertyValueFactory<RailwayStation, String>("country"));
     }
 
+    private void refreshStations(){
+
+    }
     public void addStation(ActionEvent actionEvent) {
     }
 
