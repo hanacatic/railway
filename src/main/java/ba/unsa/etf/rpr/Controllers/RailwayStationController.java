@@ -27,6 +27,15 @@ public class RailwayStationController {
         addressColumn.setCellValueFactory(new PropertyValueFactory<RailwayStation, String>("address"));
         cityColumn.setCellValueFactory(new PropertyValueFactory<RailwayStation, String>("city"));
         countryColumn.setCellValueFactory(new PropertyValueFactory<RailwayStation, String>("country"));
+        refreshStations();
+        stationsTable.getSelectionModel().selectedItemProperty().addListener((obs, o, n)->{
+            if(n != null){
+                stationName.setText(((RailwayStation) n).getName());
+                stationAddress.setText(((RailwayStation) n).getAddress());
+                stationCity.setText(((RailwayStation) n).getCity());
+                stationCountry.setText(((RailwayStation) n).getCountry());
+            }
+        });
     }
 
     private void refreshStations(){
