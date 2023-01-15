@@ -12,4 +12,7 @@ public class JourneyManager {
         return DaoFactory.journeyDao().getAll();
     }
 
+    public void delete(int id) throws RailwayException {
+        DaoFactory.journeyDao().delete(id);
+    }
 }
