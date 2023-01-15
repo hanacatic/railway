@@ -1,7 +1,12 @@
 package ba.unsa.etf.rpr.Controllers;
 
+import ba.unsa.etf.rpr.Bussiness.JourneyManager;
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -10,6 +15,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class JourneysController {
+    private final JourneyManager journeyManager = new JourneyManager();
     public TableView journeysTable;
     public TableColumn<Journey, String> idColumn;
     public TableColumn<Journey, String> trainIdColumn;
@@ -29,5 +35,14 @@ public class JourneysController {
         departureTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("departureTime"));
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
+    }
+
+    private void refreshJourneys(){
+        try{
+            journeysTable.setItems(FXCollections.observableList(journeyManager.getAll()));
+            journeysTable.refresh();
+        } catch(RailwayException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
