@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
+   <center>
+      <TableView fx:id="journeysTable" prefHeight="430.0" prefWidth="733.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="28.000030517578125" text="Id" />
+          <TableColumn fx:id="trainIdColumn" prefWidth="61.600006103515625" text="Train id" />
+            <TableColumn fx:id="departureStationIdColumn" prefWidth="126.4000244140625" text="Departure station id " />
+            <TableColumn fx:id="arrivalStationIdColumn" prefWidth="110.4000244140625" text="Arrival station id" />
+            <TableColumn fx:id="departureDateColumn" prefWidth="98.39996337890625" text="Departure date" />
+            <TableColumn fx:id="departureTimeColumn" prefWidth="98.4000244140625" text="Departure time" />
+            <TableColumn fx:id="arrivalDateColumn" prefWidth="83.20001220703125" text="Arrival date" />
+            <TableColumn fx:id="arrivalTimeColumn" prefWidth="90.39996337890625" text="Arrival time" />
+        </columns>
+      </TableView>
+   </center>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</BorderPane>
