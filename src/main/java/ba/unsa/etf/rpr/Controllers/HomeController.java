@@ -31,7 +31,7 @@ public class HomeController {
         stage.setMinWidth(120);
         stage.setResizable(false);
         stage.show();
-        /*Stage lastStage = (Stage) adminBtn.getScene().getWindow();
-        lastStage.close();*/
+        Stage lastStage = (Stage) adminBtn.getScene().getWindow();
+        lastStage.close();
     }
 }
