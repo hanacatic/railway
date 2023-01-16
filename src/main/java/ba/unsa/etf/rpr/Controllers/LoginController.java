@@ -17,7 +17,7 @@ public class LoginController {
 
     public void actionLogin(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/train.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/journeys.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         stage.setScene(scene);
         stage.show();
