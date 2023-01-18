@@ -19,4 +19,8 @@ public class JourneyManager {
     public Journey add(Journey journey) throws RailwayException {
         return DaoFactory.journeyDao().add(journey);
     }
+
+    public void update(Journey journey) throws RailwayException {
+        DaoFactory.journeyDao().update(journey);
+    }
 }
