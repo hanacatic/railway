@@ -15,4 +15,8 @@ public class JourneyManager {
     public void delete(int id) throws RailwayException {
         DaoFactory.journeyDao().delete(id);
     }
+
+    public Journey add(Journey journey) throws RailwayException {
+        return DaoFactory.journeyDao().add(journey);
+    }
 }
