@@ -23,4 +23,8 @@ public class JourneyManager {
     public void update(Journey journey) throws RailwayException {
         DaoFactory.journeyDao().update(journey);
     }
+
+    public Journey getById(int id) throws RailwayException {
+        return DaoFactory.journeyDao().getById(id);
+    }
 }
