@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
@@ -28,33 +28,42 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
    </padding>
    <top>
-      <MenuBar>
-        <menus>
-          <Menu text="_File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu text="_Edit">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#editTrains" text="Trains" />
-                  <MenuItem mnemonicParsing="false" onAction="#editRailwayStations" text="Railway stations" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu text="_Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
+      <ToolBar prefHeight="45.0" prefWidth="702.0" styleClass="Btn" BorderPane.alignment="CENTER">
+        <items>
+            <ComboBox editable="true" prefWidth="150.0" promptText="railway station">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </ComboBox>
+            <Button mnemonicParsing="false" onAction="#addJourney" prefHeight="26.0" prefWidth="66.0" styleClass="Btn" text="Add">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Separator layoutX="121.0" layoutY="10.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="18.0" />
+          <Button mnemonicParsing="false" onAction="#editTrains" prefHeight="27.0" prefWidth="50.0" styleClass="Btn" text="Trains">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#editRailwayStations" styleClass="Btn" text="Stations">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="36.0" prefWidth="246.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" styleClass="Btn" text="Log Out">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+        </items>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" />
+         </BorderPane.margin>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="5.0" right="5.0" />
-         </BorderPane.margin>
-      </MenuBar>
+      </ToolBar>
    </top>
 </BorderPane>

@@ -44,6 +44,7 @@ public class JourneysController {
         departureTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("departureTime"));
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
+        refreshJourneys();
     }
 
     private void refreshJourneys(){
@@ -72,5 +73,15 @@ public class JourneysController {
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void logOut(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/home.fxml"));
+        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        stage.setScene(scene);
+        stage.show();
+        Stage lastStage = (Stage) journeysTable.getScene().getWindow();
+        lastStage.close();
     }
 }
