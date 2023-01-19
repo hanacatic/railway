@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="429.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneyFormController">
+   <center>
+      <GridPane alignment="CENTER" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="571.0" vgap="5.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.39996337890625" minWidth="10.0" prefWidth="69.40000762939455" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.39996337890625" minWidth="10.0" prefWidth="181.39999237060547" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.20001220703125" minWidth="10.0" prefWidth="374.40001220703124" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.20001220703125" minWidth="10.0" prefWidth="79.99998779296868" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="95.79999389648438" minHeight="10.0" prefHeight="42.40001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="187.79999771118165" minHeight="1.4000061035156222" prefHeight="41.6000244140625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="214.40001525878904" minHeight="10.0" prefHeight="38.20000000000002" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="214.40001525878904" minHeight="10.0" prefHeight="44.599999999999994" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="214.40001525878904" minHeight="10.0" prefHeight="38.199984741210926" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="214.40001525878904" minHeight="3.599996948242193" prefHeight="40.79998779296872" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="214.40001525878904" minHeight="10.0" prefHeight="41.60001220703123" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="27.0" prefWidth="146.0" text="Train name:" GridPane.columnIndex="1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="146.0" text="Departure station:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <ComboBox prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" />
+            <ComboBox prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="27.0" prefWidth="146.0" text="Arrival station:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <ComboBox layoutX="196.0" layoutY="158.0" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label prefHeight="27.0" prefWidth="146.0" text="Departure date:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <DatePicker prefHeight="26.0" prefWidth="342.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label prefHeight="27.0" prefWidth="146.0" text="Arrival date:" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <DatePicker prefHeight="26.0" prefWidth="342.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label prefHeight="27.0" prefWidth="146.0" text="Departure time:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="146.0" text="Arrival time:" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.79998779296875" minWidth="10.0" prefWidth="108.79998779296875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="108.00000000000001" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.4000244140625" minWidth="4.0" prefWidth="12.5999755859375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.19998779296873" minWidth="10.0" prefWidth="107.0000244140625" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Spinner editable="true" prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" />
+                  <Spinner editable="true" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
+                  <Label prefHeight="27.0" prefWidth="14.0" text=":" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="27.0" prefWidth="146.0" text="(hh:mm)">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.79998779296875" minWidth="10.0" prefWidth="108.79998779296875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="108.00000000000001" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.4000244140625" minWidth="4.0" prefWidth="12.5999755859375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.19998779296873" minWidth="10.0" prefWidth="107.0000244140625" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Spinner editable="true" prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" />
+                  <Spinner editable="true" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
+                  <Label prefHeight="27.0" prefWidth="14.0" text=":" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="27.0" prefWidth="146.0" text="(hh:mm)">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </GridPane>
+   </center>
+   <top>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="603.0" text="Journey" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </Label>
+   </top>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="568.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#addJourney" styleClass="Btn" text="Add">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#updateJourney" styleClass="Btn" text="Update">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteJourney" styleClass="Btn" text="Delete">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+        </buttons>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+</BorderPane>
