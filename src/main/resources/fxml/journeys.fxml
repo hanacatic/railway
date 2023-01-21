@@ -9,7 +9,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
+<BorderPane fx:id="journeyScreen" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
    <center>
       <TableView fx:id="journeysTable" prefHeight="448.0" prefWidth="741.0" BorderPane.alignment="CENTER">
         <columns>

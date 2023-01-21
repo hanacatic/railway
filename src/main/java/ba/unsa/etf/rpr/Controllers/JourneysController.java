@@ -15,7 +15,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -34,6 +36,7 @@ public class JourneysController {
     public TableColumn<Journey, Time> departureTimeColumn;
     public TableColumn<Journey, Date> arrivalDateColumn;
     public TableColumn<Journey, Time> arrivalTimeColumn;
+    public BorderPane journeyScreen;
 
     public void initialize(){
         idColumn.setCellValueFactory(new PropertyValueFactory<Journey, String>("id"));
@@ -55,8 +58,26 @@ public class JourneysController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
+    public void editJourneyScene(Integer journeyId){
+        try{
+            ((Stage)journeyScreen.getScene().getWindow()).hide();
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/JourneyForm.fxml"));
+            Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Edit Journey");
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+            stage.setOnHiding(event ->{
+                ((Stage)journeyScreen.getScene().getWindow()).show();
+                refreshJourneys();;
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void addJourney(ActionEvent actionEvent) {
+        editJourneyScene(null);
     }
 
     public void editTrains(ActionEvent actionEvent) throws IOException {
