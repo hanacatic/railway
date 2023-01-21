@@ -58,42 +58,38 @@ public class JourneysController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    public void editJourneyScene(Integer journeyId){
+    public FXMLLoader editingScene(String fxmlName, String sceneName){
         try{
             ((Stage)journeyScreen.getScene().getWindow()).hide();
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/JourneyForm.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxmlName + ".fxml"));
             Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Edit Journey");
+            stage.setTitle(sceneName);
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
             stage.setOnHiding(event ->{
                 ((Stage)journeyScreen.getScene().getWindow()).show();
                 refreshJourneys();;
             });
+            return fxmlLoader;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void editJourneyScene(Integer journeyId) {
+        editingScene("JourneyForm", "Edit Journey");
     }
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);
     }
 
     public void editTrains(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/train.fxml"));
-        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        stage.setScene(scene);
-        stage.show();
+        editingScene("train", "Edit Trains");
     }
 
     public void editRailwayStations(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/railwayStation.fxml"));
-        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        stage.setScene(scene);
-        stage.show();
+        editingScene("railwayStation", "Edit Railway Stations");
     }
 
     public void logOut(ActionEvent actionEvent) throws IOException {
