@@ -78,7 +78,8 @@ public class JourneysController {
         }
     }
     public void editJourneyScene(Integer journeyId) {
-        editingScene("JourneyForm", "Edit Journey");
+        FXMLLoader fxmlLoader = editingScene("JourneyForm", "Edit Journey");
+        fxmlLoader.setController(new JourneyFormController(journeyId));
     }
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);

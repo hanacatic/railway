@@ -13,6 +13,7 @@ public class JourneyFormController {
     private final TrainManager trainManager = new TrainManager();
     private final JourneyManager journeyManager = new JourneyManager();
     private final RailwayStationManager stationManager = new RailwayStationManager();
+    private Integer journeyId;
     public ComboBox<Train> trainName;
     public ComboBox departureStation;
     public ComboBox arrivalStation;
@@ -22,6 +23,10 @@ public class JourneyFormController {
     public Spinner departureTimeMin;
     public Spinner arrivalTimeH;
     public Spinner arrivalTimeMin;
+
+    public JourneyFormController(Integer journeyId) {
+        this.journeyId = journeyId;
+    }
 
     public void initialize(){
         try{
