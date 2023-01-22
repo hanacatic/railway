@@ -53,13 +53,14 @@ public class RailwayStation implements Idable {
 
     @Override
     public String toString() {
-        return "RailwayStation{" +
+        return this.name + ", " + this.city +", " + this.country;
+        /*return "RailwayStation{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", adress='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
-                '}';
+                '}';*/
     }
 
     @Override

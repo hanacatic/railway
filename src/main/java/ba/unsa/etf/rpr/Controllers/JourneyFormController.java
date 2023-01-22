@@ -1,12 +1,19 @@
 package ba.unsa.etf.rpr.Controllers;
 
+import ba.unsa.etf.rpr.Bussiness.JourneyManager;
+import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
+import ba.unsa.etf.rpr.Bussiness.TrainManager;
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.domain.Train;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 
 public class JourneyFormController {
-    public ComboBox trainName;
+    private final TrainManager trainManager = new TrainManager();
+    private final JourneyManager journeyManager = new JourneyManager();
+    private final RailwayStationManager stationManager = new RailwayStationManager();
+    public ComboBox<Train> trainName;
     public ComboBox departureStation;
     public ComboBox arrivalStation;
     public DatePicker departureDate;
@@ -16,6 +23,15 @@ public class JourneyFormController {
     public Spinner arrivalTimeH;
     public Spinner arrivalTimeMin;
 
+    public void initialize(){
+        try{
+            trainName.setItems(FXCollections.observableList(trainManager.getAll()));
+            departureStation.setItems(FXCollections.observableList(stationManager.getAll()));
+            arrivalStation.setItems(FXCollections.observableList(stationManager.getAll()));
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
     public void addJourney(ActionEvent actionEvent) {
     }
 

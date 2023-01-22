@@ -37,11 +37,12 @@ public class Train implements Idable {
 
     @Override
     public String toString() {
-        return "Train{" +
+        return this.name;
+        /*return "Train{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateBought=" + dateBought +
-                '}';
+                '}';*/
     }
 
     @Override
