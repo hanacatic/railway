@@ -13,7 +13,7 @@ public class JourneyFormController {
     private final TrainManager trainManager = new TrainManager();
     private final JourneyManager journeyManager = new JourneyManager();
     private final RailwayStationManager stationManager = new RailwayStationManager();
-    private Integer journeyId;
+    private Integer journeyId = null;
     public ComboBox<Train> trainName;
     public ComboBox departureStation;
     public ComboBox arrivalStation;
@@ -24,7 +24,7 @@ public class JourneyFormController {
     public Spinner arrivalTimeH;
     public Spinner arrivalTimeMin;
 
-    public JourneyFormController(Integer journeyId) {
+    public JourneyFormController(Integer journeyId){
         this.journeyId = journeyId;
     }
 
@@ -33,7 +33,11 @@ public class JourneyFormController {
             trainName.setItems(FXCollections.observableList(trainManager.getAll()));
             departureStation.setItems(FXCollections.observableList(stationManager.getAll()));
             arrivalStation.setItems(FXCollections.observableList(stationManager.getAll()));
-        } catch (RailwayException e) {
+            if(journeyId != null){
+                journeyManager.getById(journeyId);
+            }
+        }
+        catch (RailwayException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }

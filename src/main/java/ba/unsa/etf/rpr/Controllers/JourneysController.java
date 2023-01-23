@@ -78,11 +78,28 @@ public class JourneysController {
         }
     }
     public void editJourneyScene(Integer journeyId) {
-        FXMLLoader fxmlLoader = editingScene("JourneyForm", "Edit Journey");
-        fxmlLoader.setController(new JourneyFormController(journeyId));
+        try{
+            ((Stage)journeyScreen.getScene().getWindow()).hide();
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/JourneyForm.fxml"));
+            fxmlLoader.setController(new JourneyFormController(journeyId));
+            Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Edit Journey");
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+            stage.setOnHiding(event ->{
+                ((Stage)journeyScreen.getScene().getWindow()).show();
+                refreshJourneys();;
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);
+        //editingScene("JourneyForm", "Edit Journey");
     }
 
     public void editTrains(ActionEvent actionEvent) throws IOException {
