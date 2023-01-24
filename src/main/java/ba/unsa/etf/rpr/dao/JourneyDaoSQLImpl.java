@@ -34,9 +34,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
             journey.setArrivalDate(rs.getDate("arrivalDate"));
             journey.setDepartureTime(rs.getTime("departureTime"));
             journey.setArrivalTime(rs.getTime("arrivalTime"));
-            journey.setTrain(DaoFactory.trainDao().getById(rs.getInt("trainId")));
-            journey.setDepartureStation(DaoFactory.railwayStationDao().getById(rs.getInt("departureStationId")));
-            journey.setArrivalStation(DaoFactory.railwayStationDao().getById(rs.getInt("arrivalStationId")));
+            journey.setTrain(DaoFactory.trainDao().getById(rs.getInt("train")));
+            journey.setDepartureStation(DaoFactory.railwayStationDao().getById(rs.getInt("departureStation")));
+            journey.setArrivalStation(DaoFactory.railwayStationDao().getById(rs.getInt("arrivalStation")));
             return journey;
 
         }catch(Exception e) {
@@ -48,9 +48,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
     public Map<String, Object> object2row(Journey object) {
         Map<String, Object> row = new TreeMap<>();
         row.put("id", object.getId());
-        row.put("trainId", object.getTrain().getId());
-        row.put("departureStationId", object.getDepartureStation().getId());
-        row.put("arrivalStationId", object.getArrivalStation().getId());
+        row.put("train", object.getTrain().getId());
+        row.put("departureStation", object.getDepartureStation().getId());
+        row.put("arrivalStation", object.getArrivalStation().getId());
         row.put("departureDate", object.getDepartureDate());
         row.put("arrivalDate", object.getArrivalDate());
         row.put("departureTime", object.getDepartureTime());
