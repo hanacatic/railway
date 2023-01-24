@@ -5,9 +5,14 @@ import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Train;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+
+import java.sql.Time;
+import java.time.LocalDate;
 
 public class JourneyFormController {
     private final TrainManager trainManager = new TrainManager();
@@ -48,5 +53,18 @@ public class JourneyFormController {
     }
 
     public void deleteJourney(ActionEvent actionEvent) {
+    }
+    public class JourneyModel{
+        public SimpleStringProperty trainName = new SimpleStringProperty("");
+        public SimpleStringProperty departureStation = new SimpleStringProperty("");
+        public SimpleStringProperty arrivalStation = new SimpleStringProperty("");
+        public SimpleObjectProperty<LocalDate> departureDate = new SimpleObjectProperty<LocalDate>();
+        public SimpleObjectProperty<LocalDate> arrivalDate = new SimpleObjectProperty<LocalDate>();
+        public SimpleObjectProperty<Double> departureTimeHH = new SimpleObjectProperty<Double>();
+        public SimpleObjectProperty<Double> departureTimeMM = new SimpleObjectProperty<Double>();
+        public SimpleObjectProperty<Double> arrivalTimeHH = new SimpleObjectProperty<Double>();
+        public SimpleObjectProperty<Double> arrivalTimeMM = new SimpleObjectProperty<Double>();
+
+
     }
 }
