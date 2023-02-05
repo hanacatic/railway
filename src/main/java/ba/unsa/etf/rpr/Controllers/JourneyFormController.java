@@ -53,21 +53,12 @@ public class JourneyFormController {
             arrivalTimeH.getValueFactory().valueProperty().bindBidirectional(model.arrivalTimeHH);
             arrivalTimeMin.getValueFactory().valueProperty().bindBidirectional(model.arrivalTimeMM);
             if(journeyId != null){
-                journeyManager.getById(journeyId);
+                model.fromJourney(journeyManager.getById(journeyId));
             }
         }
         catch (RailwayException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
-    }
-    public void addJourney(ActionEvent actionEvent) {
-        try{
-        Journey journey = model.toJourney();
-        journeyManager.add(journey);
-        } catch (RailwayException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     public void saveForm(ActionEvent actionEvent) {
@@ -88,6 +79,7 @@ public class JourneyFormController {
     }
 
     public void cancelForm(ActionEvent actionEvent) {
+        ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
     public class JourneyModel{
         public SimpleObjectProperty<Train> train = new SimpleObjectProperty<Train>();
@@ -100,6 +92,17 @@ public class JourneyFormController {
         public SimpleObjectProperty<Integer> arrivalTimeHH = new SimpleObjectProperty<Integer>(0);
         public SimpleObjectProperty<Integer> arrivalTimeMM = new SimpleObjectProperty<Integer>(0);
 
+        public void fromJourney(Journey journey){
+            this.train.set(journey.getTrain());
+            this.departureStation.set(journey.getDepartureStation());
+            this.arrivalStation.set(journey.getArrivalStation());
+            this.departureDate.set(journey.getDepartureDate().toLocalDate());
+            this.arrivalDate.set(journey.getArrivalDate().toLocalDate());
+            this.departureTimeHH.set(journey.getDepartureTime().getHours());
+            this.departureTimeMM.set(journey.getDepartureTime().getMinutes());
+            this.arrivalTimeHH.set(journey.getArrivalTime().getHours());
+            this.arrivalTimeMM.set(journey.getArrivalTime().getMinutes());
+        }
         public Journey toJourney(){
             Journey journey = new Journey();
             journey.setTrain(this.train.getValue());
