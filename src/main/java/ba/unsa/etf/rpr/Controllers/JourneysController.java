@@ -99,7 +99,6 @@ public class JourneysController {
     }
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);
-        //editingScene("JourneyForm", "Edit Journey");
     }
 
     public void editTrains(ActionEvent actionEvent) throws IOException {
