@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="429.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane prefHeight="429.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane alignment="CENTER" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="571.0" vgap="5.0">
         <columnConstraints>
@@ -83,8 +83,8 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Spinner fx:id="departureTimeH" editable="true" prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" min="0" max="23" />
-                  <Spinner fx:id="departureTimeMin" editable="true" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" min="0" max="59" />
+                  <Spinner fx:id="departureTimeH" editable="true" max="23" min="0" prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" />
+                  <Spinner fx:id="departureTimeMin" editable="true" max="59" min="0" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
                   <Label prefHeight="27.0" prefWidth="14.0" text=":" GridPane.columnIndex="2">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -108,8 +108,8 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Spinner fx:id="arrivalTimeH" editable="true"  prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" min="0" max="23" />
-                  <Spinner fx:id="arrivalTimeMin" editable="true" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" min="0" max="59" />
+                  <Spinner fx:id="arrivalTimeH" editable="true" max="23" min="0" prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" />
+                  <Spinner fx:id="arrivalTimeMin" editable="true" max="59" min="0" prefHeight="26.0" prefWidth="112.0" GridPane.columnIndex="3" />
                   <Label prefHeight="27.0" prefWidth="14.0" text=":" GridPane.columnIndex="2">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -141,27 +141,22 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="568.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#addJourney" styleClass="Btn" text="Add">
+          <Button mnemonicParsing="false" onAction="#saveForm" prefHeight="27.0" prefWidth="100.0" styleClass="Btn" text="Save">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#updateJourney" styleClass="Btn" text="Update">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#deleteJourney" styleClass="Btn" text="Delete">
+            <Button mnemonicParsing="false" onAction="#cancelForm" styleClass="Btn" text="Cancel">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Button>
         </buttons>
          <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
          </padding>
          <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
          </BorderPane.margin>
       </ButtonBar>
    </bottom>

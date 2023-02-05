@@ -11,16 +11,16 @@
 
 <BorderPane fx:id="journeyScreen" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
    <center>
-      <TableView fx:id="journeysTable" prefHeight="448.0" prefWidth="741.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="journeysTable" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="28.000030517578125" text="Id" />
-          <TableColumn fx:id="trainIdColumn" prefWidth="61.600006103515625" text="Train id" />
-            <TableColumn fx:id="departureStationIdColumn" prefWidth="126.4000244140625" text="Departure station id " />
-            <TableColumn fx:id="arrivalStationIdColumn" prefWidth="110.4000244140625" text="Arrival station id" />
-            <TableColumn fx:id="departureDateColumn" prefWidth="98.39996337890625" text="Departure date" />
-            <TableColumn fx:id="departureTimeColumn" prefWidth="98.4000244140625" text="Departure time" />
-            <TableColumn fx:id="arrivalDateColumn" prefWidth="83.20001220703125" text="Arrival date" />
-            <TableColumn fx:id="arrivalTimeColumn" prefWidth="90.39996337890625" text="Arrival time" />
+          <TableColumn fx:id="idColumn" maxWidth="1.7976931348623157E308" prefWidth="28.000030517578125" text="Id" />
+          <TableColumn fx:id="trainIdColumn" maxWidth="1.7976931348623157E308" prefWidth="61.600006103515625" text="Train" />
+            <TableColumn fx:id="departureStationIdColumn" maxWidth="1.7976931348623157E308" prefWidth="126.4000244140625" text="Departure station" />
+            <TableColumn fx:id="arrivalStationIdColumn" maxWidth="1.7976931348623157E308" prefWidth="110.4000244140625" text="Arrival station" />
+            <TableColumn fx:id="departureDateColumn" maxWidth="1.7976931348623157E308" prefWidth="98.39996337890625" text="Departure date" />
+            <TableColumn fx:id="departureTimeColumn" maxWidth="1.7976931348623157E308" prefWidth="98.4000244140625" text="Departure time" />
+            <TableColumn fx:id="arrivalDateColumn" maxWidth="1.7976931348623157E308" prefWidth="83.20001220703125" text="Arrival date" />
+            <TableColumn fx:id="arrivalTimeColumn" maxWidth="1.7976931348623157E308" prefWidth="90.39996337890625" text="Arrival time" />
         </columns>
       </TableView>
    </center>
@@ -28,7 +28,7 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
    </padding>
    <top>
-      <ToolBar prefHeight="45.0" prefWidth="702.0" styleClass="Btn" BorderPane.alignment="CENTER">
+      <ToolBar styleClass="Btn" BorderPane.alignment="CENTER">
         <items>
             <ComboBox editable="true" prefWidth="150.0" promptText="railway station">
                <padding>
@@ -51,7 +51,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Button>
-            <Separator orientation="VERTICAL" prefHeight="36.0" prefWidth="246.0" />
+            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="36.0" prefWidth="257.0" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" styleClass="Btn" text="Log Out">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

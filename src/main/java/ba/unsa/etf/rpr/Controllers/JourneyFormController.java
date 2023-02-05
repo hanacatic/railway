@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import java.sql.Date;
@@ -69,10 +70,24 @@ public class JourneyFormController {
 
     }
 
-    public void updateJourney(ActionEvent actionEvent) {
+    public void saveForm(ActionEvent actionEvent) {
+        try{
+            Journey journey = model.toJourney();
+            if(journeyId != null){
+                journey.setId(journeyId);
+                journeyManager.update(journey);
+            }
+            else{
+                journeyManager.add(journey);
+            }
+            ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+
     }
 
-    public void deleteJourney(ActionEvent actionEvent) {
+    public void cancelForm(ActionEvent actionEvent) {
     }
     public class JourneyModel{
         public SimpleObjectProperty<Train> train = new SimpleObjectProperty<Train>();
@@ -80,10 +95,10 @@ public class JourneyFormController {
         public SimpleObjectProperty<RailwayStation> arrivalStation = new SimpleObjectProperty<RailwayStation>();
         public SimpleObjectProperty<LocalDate> departureDate = new SimpleObjectProperty<LocalDate>();
         public SimpleObjectProperty<LocalDate> arrivalDate = new SimpleObjectProperty<LocalDate>();
-        public SimpleObjectProperty<Integer> departureTimeHH = new SimpleObjectProperty<Integer>();
-        public SimpleObjectProperty<Integer> departureTimeMM = new SimpleObjectProperty<Integer>();
-        public SimpleObjectProperty<Integer> arrivalTimeHH = new SimpleObjectProperty<Integer>();
-        public SimpleObjectProperty<Integer> arrivalTimeMM = new SimpleObjectProperty<Integer>();
+        public SimpleObjectProperty<Integer> departureTimeHH = new SimpleObjectProperty<Integer>(0);
+        public SimpleObjectProperty<Integer> departureTimeMM = new SimpleObjectProperty<Integer>(0);
+        public SimpleObjectProperty<Integer> arrivalTimeHH = new SimpleObjectProperty<Integer>(0);
+        public SimpleObjectProperty<Integer> arrivalTimeMM = new SimpleObjectProperty<Integer>(0);
 
         public Journey toJourney(){
             Journey journey = new Journey();
