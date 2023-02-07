@@ -11,6 +11,16 @@ public class RailwayStation implements Idable {
     private String city;
     private String country;
 
+    public RailwayStation() {
+    }
+
+    public RailwayStation(String name, String address, String city, String country) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+    }
+
     public int getId() {
         return id;
     }

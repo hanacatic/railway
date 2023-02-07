@@ -11,6 +11,13 @@ public class Train implements Idable {
     private String name;
     private Date dateBought;
 
+    public Train() {
+    }
+    public Train(String name, Date dateBought) {
+        this.name = name;
+        this.dateBought = dateBought;
+    }
+
     public int getId() {
         return id;
     }

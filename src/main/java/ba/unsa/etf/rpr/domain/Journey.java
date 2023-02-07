@@ -17,6 +17,19 @@ public class Journey implements Idable {
     private Time departureTime;
     private Time arrivalTime;
 
+    public Journey() {
+    }
+
+    public Journey(Train train, RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time departureTime, Time arrivalTime) {
+        this.train = train;
+        this.departureStation = departureStation;
+        this.arrivalStation = arrivalStation;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
+
     public int getId() {
         return id;
     }
