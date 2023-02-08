@@ -2,6 +2,8 @@ package ba.unsa.etf.rpr.Controllers;
 
 import ba.unsa.etf.rpr.App;
 import ba.unsa.etf.rpr.Bussiness.JourneyManager;
+import ba.unsa.etf.rpr.Controllers.Components.DoubleButtonCellFactory;
+import ba.unsa.etf.rpr.Controllers.Components.DoubleButtonTableCell;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
@@ -10,10 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -22,6 +21,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -36,6 +36,8 @@ public class JourneysController {
     public TableColumn<Journey, Time> departureTimeColumn;
     public TableColumn<Journey, Date> arrivalDateColumn;
     public TableColumn<Journey, Time> arrivalTimeColumn;
+    public TableColumn<Journey, Integer> actionColumn;
+
     public BorderPane journeyScreen;
 
     public void initialize(){
@@ -47,7 +49,15 @@ public class JourneysController {
         departureTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("departureTime"));
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
+        actionColumn.setCellFactory(new DoubleButtonCellFactory(editEvent ->{
+            int journeyId = Integer.parseInt(((Button) editEvent.getSource()).getUserData().toString());
+            editJourneyScene(journeyId);
+        }, (deleteEvent->{
+            int journeyId = Integer.parseInt(((Button) deleteEvent.getSource()).getUserData().toString());
+            deleteJourney(journeyId);
+        })));
         refreshJourneys();
+
     }
 
     private void refreshJourneys(){
@@ -96,6 +106,18 @@ public class JourneysController {
             throw new RuntimeException(e);
         }
 
+    }
+    public void deleteJourney(Integer journeyId){
+        try{
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this journey?");
+            Optional<ButtonType> result = confirmation.showAndWait();
+            if(!result.get().getButtonData().isCancelButton()){
+                journeyManager.delete(journeyId);
+                refreshJourneys();
+            }
+        }catch(RailwayException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);
