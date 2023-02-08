@@ -32,6 +32,10 @@ public class RailwayStationManagerTest {
         stations = new ArrayList<RailwayStation>();
         stations.add(station);
     }
+    /**
+     * Tests adding a railway station
+     * @throws RailwayException
+     * */
     @Test
     void addNewRailwayStation() throws RailwayException {
         RailwayStation newStation = new RailwayStation("Railway Station Podlugovi", "Pjesma", "Album", "Zdravko Colic");

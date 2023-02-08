@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 /**
  * Bean for journey
- * @autor Hana Catic
+ * @author Hana Catic
  * */
 public class Journey implements Idable {
     private int id;
