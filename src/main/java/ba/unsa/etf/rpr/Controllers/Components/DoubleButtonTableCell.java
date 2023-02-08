@@ -18,9 +18,9 @@ public class DoubleButtonTableCell<Type> extends TableCell<Type, Type> {
     }
 
     @Override
-    protected void updateItem(Type o, boolean b){
+    protected void updateItem(Type o, boolean b) {
         super.updateItem(o, b);
-        if(o != null){
+        if (o != null) {
             HBox box = new HBox();
             box.setAlignment(Pos.CENTER);
             edit.setUserData(o);

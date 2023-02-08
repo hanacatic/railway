@@ -49,6 +49,7 @@ public class JourneysController {
         departureTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("departureTime"));
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
+        actionColumn.setCellValueFactory(new PropertyValueFactory<Journey, Integer>("id"));
         actionColumn.setCellFactory(new DoubleButtonCellFactory(editEvent ->{
             int journeyId = Integer.parseInt(((Button) editEvent.getSource()).getUserData().toString());
             editJourneyScene(journeyId);
