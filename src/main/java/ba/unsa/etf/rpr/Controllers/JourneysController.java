@@ -82,7 +82,7 @@ public class JourneysController {
      * @param fxmlName - name of scene resource
      * @param sceneName - name of scene
      * */
-    public FXMLLoader editingScene(String fxmlName, String sceneName){
+    public void editingScene(String fxmlName, String sceneName){
         try{
             ((Stage)journeyScreen.getScene().getWindow()).hide();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxmlName + ".fxml"));
@@ -96,7 +96,6 @@ public class JourneysController {
                 ((Stage)journeyScreen.getScene().getWindow()).show();
                 refreshJourneys();;
             });
-            return fxmlLoader;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
