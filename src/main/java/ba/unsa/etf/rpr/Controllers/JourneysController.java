@@ -24,9 +24,14 @@ import java.sql.Time;
 import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-
+/**
+ * Controller for managing Journey Entities
+ * @author Hana Catic
+ * */
 public class JourneysController {
+    //manager
     private final JourneyManager journeyManager = new JourneyManager();
+    //components
     public TableView journeysTable;
     public TableColumn<Journey, String> idColumn;
     public TableColumn<Journey, String> trainIdColumn;
@@ -50,6 +55,7 @@ public class JourneysController {
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<Journey, Integer>("id"));
+
         actionColumn.setCellFactory(new DoubleButtonCellFactory(editEvent ->{
             int journeyId = Integer.parseInt(((Button) editEvent.getSource()).getUserData().toString());
             editJourneyScene(journeyId);
@@ -57,10 +63,12 @@ public class JourneysController {
             int journeyId = Integer.parseInt(((Button) deleteEvent.getSource()).getUserData().toString());
             deleteJourney(journeyId);
         })));
+
         refreshJourneys();
-
     }
-
+    /**
+     * fetches journeys from database
+     * */
     private void refreshJourneys(){
         try{
             journeysTable.setItems(FXCollections.observableList(journeyManager.getAll()));
@@ -69,6 +77,11 @@ public class JourneysController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+    /**
+     * open form for editing or creating trains or railway stations
+     * @param fxmlName - name of scene resource
+     * @param sceneName - name of scene
+     * */
     public FXMLLoader editingScene(String fxmlName, String sceneName){
         try{
             ((Stage)journeyScreen.getScene().getWindow()).hide();
@@ -88,6 +101,11 @@ public class JourneysController {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Opens form for editing or creating journeys
+     * @param journeyId - only for editing, only if the journey already exists, otherwise null
+     * */
     public void editJourneyScene(Integer journeyId) {
         try{
             ((Stage)journeyScreen.getScene().getWindow()).hide();
@@ -108,6 +126,10 @@ public class JourneysController {
         }
 
     }
+    /**
+     * Event handler for journey deletion with alert to confirm intention.
+     * @param journeyId
+     * */
     public void deleteJourney(Integer journeyId){
         try{
             Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this journey?");
@@ -120,14 +142,22 @@ public class JourneysController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+    /**
+     * Event handler for creating of a journey
+     * */
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);
     }
+    /**
+     * Event handler for opening train section.
+     * */
 
     public void editTrains(ActionEvent actionEvent) throws IOException {
         editingScene("train", "Edit Trains");
     }
-
+    /**
+     * Event handler for opening railway station section.
+     * */
     public void editRailwayStations(ActionEvent actionEvent) throws IOException {
         editingScene("railwayStation", "Edit Railway Stations");
     }
