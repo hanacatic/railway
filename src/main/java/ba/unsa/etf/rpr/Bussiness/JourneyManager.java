@@ -5,7 +5,10 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Journey;
 
 import java.util.List;
-
+/**
+ * Business Logic Layer for management of Journeys
+ * @author Hana Catic
+ * */
 public class JourneyManager {
     public void validateStations(Journey journey) throws RailwayException {
         if(journey.getDepartureStation().equals(journey.getArrivalStation())){
