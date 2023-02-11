@@ -9,19 +9,19 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="journeyScreen" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
+<BorderPane fx:id="journeyScreen" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.JourneysController">
    <center>
       <TableView fx:id="journeysTable" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumn" maxWidth="1.7976931348623157E308" prefWidth="28.000030517578125" text="Id" />
-          <TableColumn fx:id="trainIdColumn" maxWidth="1.7976931348623157E308" prefWidth="61.600006103515625" text="Train" />
-            <TableColumn fx:id="departureStationIdColumn" maxWidth="1.7976931348623157E308" prefWidth="126.4000244140625" text="Departure station" />
-            <TableColumn fx:id="arrivalStationIdColumn" maxWidth="1.7976931348623157E308" prefWidth="110.4000244140625" text="Arrival station" />
+          <TableColumn fx:id="idColumn" maxWidth="1.7976931348623157E308" prefWidth="18.4000261425972" text="Id" />
+          <TableColumn fx:id="trainIdColumn" maxWidth="1.7976931348623157E308" prefWidth="63.199974060058594" text="Train" />
+            <TableColumn fx:id="departureStationIdColumn" maxWidth="1.7976931348623157E308" prefWidth="157.5999755859375" text="Departure station" />
+            <TableColumn fx:id="arrivalStationIdColumn" maxWidth="1.7976931348623157E308" prefWidth="155.20004272460938" text="Arrival station" />
             <TableColumn fx:id="departureDateColumn" maxWidth="1.7976931348623157E308" prefWidth="103.199951171875" text="Departure date" />
-            <TableColumn fx:id="departureTimeColumn" maxWidth="1.7976931348623157E308" prefWidth="99.20001220703125" text="Departure time" />
-            <TableColumn fx:id="arrivalDateColumn" maxWidth="1.7976931348623157E308" prefWidth="88.800048828125" text="Arrival date" />
-            <TableColumn fx:id="arrivalTimeColumn" maxWidth="1.7976931348623157E308" prefWidth="87.20001220703125" text="Arrival time" />
-            <TableColumn fx:id="actionColumn" prefWidth="114.4000244140625" text="Actions" />
+            <TableColumn fx:id="departureTimeColumn" maxWidth="1.7976931348623157E308" prefWidth="109.5999755859375" text="Departure time" />
+            <TableColumn fx:id="arrivalDateColumn" maxWidth="1.7976931348623157E308" prefWidth="95.20001220703125" text="Arrival date" />
+            <TableColumn fx:id="arrivalTimeColumn" maxWidth="1.7976931348623157E308" prefWidth="94.39996337890625" text="Arrival time" />
+            <TableColumn fx:id="actionColumn" prefWidth="104.7999267578125" text="Actions" />
         </columns>
       </TableView>
    </center>
