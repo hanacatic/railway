@@ -42,14 +42,14 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="trainName" editable="true" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" />
-            <ComboBox fx:id="departureStation" editable="true" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="trainName" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" />
+            <ComboBox fx:id="departureStation" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label prefHeight="27.0" prefWidth="146.0" text="Arrival station:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="arrivalStation" editable="true" layoutX="196.0" layoutY="158.0" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="arrivalStation" layoutX="196.0" layoutY="158.0" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label prefHeight="27.0" prefWidth="146.0" text="Departure date:" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
