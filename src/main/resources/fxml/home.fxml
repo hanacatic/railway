@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -43,7 +45,7 @@
       </GridPane>
    </top>
    <center>
-      <GridPane maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+      <GridPane hgap="5.0" maxWidth="1.7976931348623157E308" vgap="5.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -74,7 +76,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <ComboBox editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="From">
+                        <ComboBox fx:id="departure" editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="From">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -97,7 +99,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <ComboBox editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="To">
+                        <ComboBox fx:id="arrival" editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="To">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -125,7 +127,7 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <DatePicker maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+                        <DatePicker fx:id="date" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -141,7 +143,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Spinner maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Spinner fx:id="timeHH" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -149,7 +151,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Spinner>
-                        <Spinner maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Spinner fx:id="timeMM" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -183,7 +185,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <RadioButton maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Departure" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <RadioButton fx:id="depart" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Departure" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -194,7 +196,7 @@
                               <ToggleGroup fx:id="departureArrival" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Arrival" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <RadioButton fx:id="arrive" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Arrival" GridPane.columnIndex="4" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -212,7 +214,27 @@
                   </GridPane>
                </children>
             </GridPane>
+            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="departureStation" prefWidth="126.39999103546143" text="Departure Station" />
+                <TableColumn fx:id="arrivalStation" prefWidth="136.79998779296875" text="Arrival Station" />
+                  <TableColumn fx:id="departureDate" prefWidth="104.0" text="Departure date" />
+                  <TableColumn fx:id="departureTime" minWidth="8.0" prefWidth="95.20001220703125" text="Departure time" />
+                  <TableColumn fx:id="arrivalDate" prefWidth="86.40005493164062" text="Arrival date" />
+                  <TableColumn fx:id="arrivalTime" prefWidth="83.20001220703125" text="Arrival time" />
+                  <TableColumn fx:id="duration" prefWidth="65.5999755859375" text="Duration" />
+              </columns>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TableView>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </GridPane>
    </center>
    <bottom>
