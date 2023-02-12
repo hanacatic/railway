@@ -47,11 +47,11 @@
    <center>
       <GridPane hgap="5.0" maxWidth="1.7976931348623157E308" vgap="5.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="203.2" minHeight="10.0" prefHeight="155.99998779296874" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="296.0" minHeight="10.0" prefHeight="229.60001220703128" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="22.0" minHeight="225.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <GridPane maxWidth="1.7976931348623157E308">
@@ -76,7 +76,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <ComboBox fx:id="departure" editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="From">
+                        <ComboBox fx:id="departure" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="From">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -99,7 +99,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <ComboBox fx:id="arrival" editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="To">
+                        <ComboBox fx:id="arrival" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="273.0" promptText="To">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -143,7 +143,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Spinner fx:id="timeHH" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Spinner fx:id="timeHH" editable="true" max="23" maxWidth="1.7976931348623157E308" min="0" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -151,7 +151,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Spinner>
-                        <Spinner fx:id="timeMM" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Spinner fx:id="timeMM" editable="true" max="59" maxWidth="1.7976931348623157E308" min="0" prefHeight="35.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -214,15 +214,15 @@
                   </GridPane>
                </children>
             </GridPane>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
               <columns>
-                <TableColumn fx:id="departureStation" prefWidth="126.39999103546143" text="Departure Station" />
-                <TableColumn fx:id="arrivalStation" prefWidth="136.79998779296875" text="Arrival Station" />
-                  <TableColumn fx:id="departureDate" prefWidth="104.0" text="Departure date" />
-                  <TableColumn fx:id="departureTime" minWidth="8.0" prefWidth="95.20001220703125" text="Departure time" />
-                  <TableColumn fx:id="arrivalDate" prefWidth="86.40005493164062" text="Arrival date" />
-                  <TableColumn fx:id="arrivalTime" prefWidth="83.20001220703125" text="Arrival time" />
-                  <TableColumn fx:id="duration" prefWidth="65.5999755859375" text="Duration" />
+                <TableColumn fx:id="departureStation" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="-1.0" text="Departure Station" />
+                <TableColumn fx:id="arrivalStation" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="-1.0" text="Arrival Station" />
+                  <TableColumn fx:id="departureDate" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Departure date" />
+                  <TableColumn fx:id="departureTime" maxWidth="1.7976931348623157E308" minWidth="95.0" prefWidth="-1.0" text="Departure time" />
+                  <TableColumn fx:id="arrivalDate" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Arrival date" />
+                  <TableColumn fx:id="arrivalTime" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="-1.0" text="Arrival time" />
+                  <TableColumn fx:id="duration" maxWidth="1.7976931348623157E308" minWidth="60.0" prefWidth="-1.0" text="Duration" />
               </columns>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

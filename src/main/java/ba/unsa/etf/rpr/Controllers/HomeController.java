@@ -1,6 +1,10 @@
 package ba.unsa.etf.rpr.Controllers;
 
 import ba.unsa.etf.rpr.App;
+import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.domain.RailwayStation;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,9 +32,17 @@ public class HomeController {
     public Spinner timeMM;
     public Spinner timeHH;
     public DatePicker date;
-    public ComboBox arrival;
-    public ComboBox departure;
-
+    public ComboBox<RailwayStation> arrival;
+    public ComboBox<RailwayStation> departure;
+    RailwayStationManager stationManager = new RailwayStationManager();
+    public void initialize() {
+        try {
+            arrival.setItems(FXCollections.observableList(stationManager.getAll()));
+            departure.setItems(FXCollections.observableList(stationManager.getAll()));
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
     public void actionExit(ActionEvent actionEvent) {
         System.exit(0);
     }
