@@ -60,4 +60,7 @@ public class HomeController {
         Stage lastStage = (Stage) adminBtn.getScene().getWindow();
         lastStage.close();
     }
+
+    public void searchJourneys(ActionEvent actionEvent) {
+    }
 }

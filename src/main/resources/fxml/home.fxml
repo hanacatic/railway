@@ -172,7 +172,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Button fx:id="adminBtn1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openLogin" prefHeight="27.0" prefWidth="100.0" styleClass="Btn" text="Search" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                        <Button fx:id="searchBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchJourneys" prefHeight="27.0" prefWidth="100.0" styleClass="Btn" text="Search" GridPane.columnIndex="5" GridPane.rowIndex="2">
                            <padding>
                               <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                            </padding>
