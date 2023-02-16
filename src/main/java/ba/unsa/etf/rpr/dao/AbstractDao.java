@@ -41,11 +41,17 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     public abstract Type row2object(ResultSet rs) throws RailwayException;
     /**
      * Method for mapping Object map
-     * @paramo object  -  an object for specific table
+     * @param object  -  an object for specific table
      * @return map of object
      * */
     public abstract Map<String, Object> object2row(Type object);
-
+    /**
+     * Method for executing any kind of query
+     * @param query - SQL query
+     * @param params - params for query
+     * @return list of objects from database
+     * @throws RailwayException in case of error with database
+     * */
     public List<Type> executeQuery(String query, Object[] params) throws RailwayException {
         try{
             PreparedStatement stmt = getConnection().prepareStatement(query);
@@ -65,6 +71,13 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
+    /**
+     * Method for executing queries that always return single record
+     * @param query - SQL query
+     * @param params - params for query
+     * @return an object from database
+     * @throws RailwayException in case of error with database
+     * */
     public Type executeQueryUnique(String query, Object[] params) throws RailwayException {
         List<Type> result = executeQuery(query, params);
         if(result != null && result.size() == 1){
