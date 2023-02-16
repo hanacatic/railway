@@ -1,8 +1,8 @@
 package ba.unsa.etf.rpr.dao;
-
-import ba.unsa.etf.rpr.domain.RailwayStation;
-import ba.unsa.etf.rpr.domain.Train;
-
+/**
+ * Factory method for singleton implementation of DAOs
+ * @author Hana Catic
+ * */
 public class DaoFactory {
     private static final RailwayStationDao railwayStationDao = RailwayStationDaoSQLImpl.getInstance();
     private static final TrainDao trainDao = TrainDaoSQLImpl.getInstance();
