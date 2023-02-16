@@ -160,7 +160,9 @@ public class JourneysController {
     public void editRailwayStations(ActionEvent actionEvent) throws IOException {
         editingScene("railwayStation", "Edit Railway Stations");
     }
-
+    /**
+     * Event handler for log out, opening home screen.
+     * */
     public void logOut(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/home.fxml"));

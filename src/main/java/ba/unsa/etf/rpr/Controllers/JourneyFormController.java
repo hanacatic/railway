@@ -8,7 +8,6 @@ import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;

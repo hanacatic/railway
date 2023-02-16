@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.HomeController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -62,8 +62,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="68.60001220703126" minHeight="10.0" prefHeight="66.20001831054688" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="80.59998168945313" minHeight="10.0" prefHeight="80.59998168945313" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <VBox GridPane.columnIndex="1">
@@ -214,7 +214,7 @@
                   </GridPane>
                </children>
             </GridPane>
-            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="118.0" prefWidth="711.0" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="departureStation" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="-1.0" text="Departure Station" />
                 <TableColumn fx:id="arrivalStation" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="-1.0" text="Arrival Station" />
