@@ -4,12 +4,14 @@ import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
-
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-
+/**
+ * MySQL implementation of JourneyDao
+ * @author Hana Catic
+ * */
 public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDao{
     private static JourneyDaoSQLImpl instance = null;
     private JourneyDaoSQLImpl(){
