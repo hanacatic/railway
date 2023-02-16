@@ -87,14 +87,29 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException("Object not found.");
         }
     }
+    /**
+     * Method that gets a record with given id from a specific table in database
+     * @param id - id of object
+     * @return an object from database
+     * @throws RailwayException in case of error with database
+     * */
     public Type getById(int id) throws RailwayException {
         return executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
     }
-
+    /**
+     * Method that gets all records from a specific table in database
+     * @return list of objects from database
+     * @throws RailwayException in case of error with database
+     * */
     public List<Type> getAll() throws RailwayException {
         return executeQuery("SELECT * FROM " + tableName, null);
     }
-
+    /**
+     * Method that adds a new record to database
+     * @param item - object to be added to database
+     * @return object that was added to database with set id
+     * @throws RailwayException in case of error with database
+     * */
     public Type add(Type item) throws RailwayException {
         try{
             Map<String, Object> row = object2row(item);
@@ -123,7 +138,12 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
-
+    /**
+     * Method that updates a record in database
+     * @param item - object to be updated
+     * @return object that was updated in database
+     * @throws RailwayException in case of error with database
+     * */
     public Type update(Type item) throws RailwayException {
         try {
             Map<String, Object> row = object2row(item);
@@ -146,7 +166,11 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
         }
-
+    /**
+     * Method that deletes a record from database
+     * @param id - id of object to be deleted from database
+     * @throws RailwayException in case of error with database
+     * */
     public void delete(int id) throws RailwayException {
         try{
             String del = "DELETE FROM " + tableName + " WHERE id = ?";
