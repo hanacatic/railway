@@ -5,6 +5,11 @@ import ba.unsa.etf.rpr.domain.Idable;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Abstract class that implements DAO CRUD methods for every entity
+ *
+ * @author Hana Catic
+ * */
 public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     private Connection connection;
     private String tableName;
@@ -27,8 +32,18 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     public Connection getConnection(){
         return this.connection;
     }
-
+    /**
+     * Method for mapping ResultSet into Object
+     * @param rs  - result set from database
+     * @return an object for specific table
+     * @throws RailwayException in case of error with database
+     * */
     public abstract Type row2object(ResultSet rs) throws RailwayException;
+    /**
+     * Method for mapping Object map
+     * @paramo object  -  an object for specific table
+     * @return map of object
+     * */
     public abstract Map<String, Object> object2row(Type object);
 
     public List<Type> executeQuery(String query, Object[] params) throws RailwayException {
