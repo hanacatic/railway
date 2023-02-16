@@ -28,27 +28,30 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             e.printStackTrace();
         }
     }
-
+    /**
+     * Method that gets connection to database
+     * @return connection to database
+     * */
     public Connection getConnection(){
         return this.connection;
     }
     /**
      * Method for mapping ResultSet into Object
-     * @param rs  - result set from database
+     * @param rs result set from database
      * @return an object for specific table
      * @throws RailwayException in case of error with database
      * */
     public abstract Type row2object(ResultSet rs) throws RailwayException;
     /**
      * Method for mapping Object map
-     * @param object  -  an object for specific table
+     * @param object an object for specific table
      * @return map of object
      * */
     public abstract Map<String, Object> object2row(Type object);
     /**
      * Method for executing any kind of query
-     * @param query - SQL query
-     * @param params - params for query
+     * @param query SQL query
+     * @param params params for query
      * @return list of objects from database
      * @throws RailwayException in case of error with database
      * */
@@ -73,8 +76,8 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     }
     /**
      * Method for executing queries that always return single record
-     * @param query - SQL query
-     * @param params - params for query
+     * @param query SQL query
+     * @param params params for query
      * @return an object from database
      * @throws RailwayException in case of error with database
      * */
@@ -89,7 +92,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     }
     /**
      * Method that gets a record with given id from a specific table in database
-     * @param id - id of object
+     * @param id id of object
      * @return an object from database
      * @throws RailwayException in case of error with database
      * */
@@ -106,7 +109,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     }
     /**
      * Method that adds a new record to database
-     * @param item - object to be added to database
+     * @param item object to be added to database
      * @return object that was added to database with set id
      * @throws RailwayException in case of error with database
      * */
@@ -140,7 +143,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
     }
     /**
      * Method that updates a record in database
-     * @param item - object to be updated
+     * @param item object to be updated
      * @return object that was updated in database
      * @throws RailwayException in case of error with database
      * */
@@ -168,7 +171,7 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         }
     /**
      * Method that deletes a record from database
-     * @param id - id of object to be deleted from database
+     * @param id id of object to be deleted from database
      * @throws RailwayException in case of error with database
      * */
     public void delete(int id) throws RailwayException {
@@ -181,7 +184,11 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
             throw new RailwayException(e.getMessage(), e);
         }
     }
-
+    /**
+     * Method that forms a map entry of columns and question marks for insert statement
+     * @param row of column names
+     * @return Map entry of columns and question marks
+     * */
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
         StringBuilder questions = new StringBuilder();
@@ -198,7 +205,11 @@ public abstract class AbstractDao<Type extends Idable> implements Dao<Type>{
         }
         return new AbstractMap.SimpleEntry<String, String>(columns.toString(), questions.toString());
     }
-
+    /**
+     * Method that prepares columns for update statement
+     * @param row to be converted into string
+     * @return string for update statement
+     * */
     private String prepareUpdateParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
         int entries = 0;
