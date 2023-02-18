@@ -85,7 +85,7 @@ public class HomeController {
 
     public void searchJourneys(ActionEvent actionEvent){
         try {
-            List<Journey> journeys = journeyManager.search(departure.getValue(), arrival.getValue(), Date.valueOf(date.getValue()), new Time(this.timeHH.getValue(), this.timeMM.getValue(), 0), true);
+            List<Journey> journeys = journeyManager.search(departure.getValue(), arrival.getValue(), Date.valueOf(date.getValue()), new Time(this.timeHH.getValue(), this.timeMM.getValue(), 0), arrive.isSelected());
             refreshJourneys(journeys);
         }
         catch(RailwayException e){
