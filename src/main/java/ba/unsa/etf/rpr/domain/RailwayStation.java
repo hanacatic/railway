@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Objects;
 /**
  * Bean for railway station
- *@author Hana Catic*/
+ * @author Hana Catic*/
 public class RailwayStation implements Idable {
     private int id;
     private String name;

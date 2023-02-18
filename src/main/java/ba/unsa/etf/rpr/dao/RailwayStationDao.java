@@ -16,7 +16,16 @@ public interface RailwayStationDao extends Dao<RailwayStation>{
      * @return railway station of given name
      * */
     RailwayStation searchByName(String name) throws RailwayException;
-
+    /**
+     * Find a railway station by city
+     * @param city in which to look for railway stations
+     * @return list of railway stations in a given city
+     * */
     List<RailwayStation> searchByCity(String city) throws RailwayException;
+    /**
+     * Find a railway station by city
+     * @param country in which to look for railway stations
+     * @return list of railway stations in a given country
+     * */
     List<RailwayStation> searchByCountry(String country) throws RailwayException;
 }

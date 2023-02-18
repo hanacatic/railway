@@ -7,7 +7,10 @@ import java.sql.*;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * MySQL implementation of RailwayStationDao
+ * @author Hana Catic
+ * */
 public class RailwayStationDaoSQLImpl extends AbstractDao<RailwayStation> implements RailwayStationDao{
 
     private static RailwayStationDaoSQLImpl instance = null;

@@ -6,7 +6,10 @@ import ba.unsa.etf.rpr.domain.Train;
 import java.sql.*;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * MySQL implementation of TrainDao
+ * @author Hana Catic
+ * */
 public class TrainDaoSQLImpl extends AbstractDao<Train> implements TrainDao{
     private static TrainDaoSQLImpl instance = null;
     private TrainDaoSQLImpl(){

@@ -55,5 +55,13 @@ public interface JourneyDao extends Dao<Journey>{
      * @return list of journeys
      * */
     List<Journey> searchByArrivalTime(Time arrivalTime) throws RailwayException;
+    /**
+     * Searches all journeys departing from a give railway station and arriving at a given railway station, arriving or departing on a given date at or after a given time
+     * @param departureStation station at which the journey must start
+     * @param arrivalStation station at which the journey must end
+     * @param date date on which the journey starts or ends depending on value of parameter arrival
+     * @param time time after which the journey starts or ends depending on value of parameter arrival
+     * @param arrival parameter which determines whether time and date refer to arrival or departure
+     * */
     List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date date, Time time, boolean arrival) throws RailwayException;
 }
