@@ -3,34 +3,40 @@ package ba.unsa.etf.rpr.Controllers;
 import ba.unsa.etf.rpr.App;
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
+import com.fasterxml.jackson.databind.deser.impl.PropertyValue;
+import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomeController {
 
     public Button adminBtn;
-    public TableColumn duration;
-    public TableColumn arrivalTime;
-    public TableColumn arrivalDate;
-    public TableColumn departureTime;
-    public TableColumn departureDate;
-    public TableColumn departureStation;
-    public TableColumn arrivalStation;
+    public TableColumn<Journey, Time> duration;
+    public TableColumn<Journey, Time> arrivalTime;
+    public TableColumn<Journey, Date> arrivalDate;
+    public TableColumn<Journey, Time> departureTime;
+    public TableColumn<Journey, Date> departureDate;
+    public TableColumn<Journey, String> departureStation;
+    public TableColumn<Journey, String> arrivalStation;
     public ToggleGroup departureArrival;
     public RadioButton arrive;
     public RadioButton depart;
-    public Spinner timeMM;
-    public Spinner timeHH;
+    public Spinner<Integer> timeMM;
+    public Spinner<Integer> timeHH;
     public DatePicker date;
     public ComboBox<RailwayStation> arrival;
     public ComboBox<RailwayStation> departure;
@@ -39,6 +45,14 @@ public class HomeController {
         try {
             arrival.setItems(FXCollections.observableList(stationManager.getAll()));
             departure.setItems(FXCollections.observableList(stationManager.getAll()));
+            departureStation.setCellValueFactory(new PropertyValueFactory<Journey, String>("departureStation"));
+            arrivalStation.setCellValueFactory(new PropertyValueFactory<Journey, String>("arrivalStation"));
+            departureDate.setCellValueFactory(new PropertyValueFactory<Journey, Date>("departureDate"));
+            arrivalDate.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
+            departureTime.setCellValueFactory(new PropertyValueFactory<Journey, Time>("departureTime"));
+            arrivalTime.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
+            duration.setCellValueFactory(new PropertyValueFactory<Journey, Time>("id"));
+
         } catch (RailwayException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
