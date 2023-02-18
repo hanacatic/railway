@@ -94,4 +94,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
     public List<Journey> searchByArrivalTime(Time arrivalTime) throws RailwayException {
         return executeQuery("SELECT * FROM Journeys WHERE arrivalTime = ?", new Object[]{arrivalTime});
     }
+
+    @Override
+    public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time time, boolean arrival) {
+        return null;
+    }
 }
