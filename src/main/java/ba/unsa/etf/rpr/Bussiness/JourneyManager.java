@@ -2,8 +2,12 @@ package ba.unsa.etf.rpr.Bussiness;
 
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.dao.JourneyDao;
 import ba.unsa.etf.rpr.domain.Journey;
+import ba.unsa.etf.rpr.domain.RailwayStation;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 /**
  * Business Logic Layer for management of Journeys
@@ -12,21 +16,21 @@ import java.util.List;
 public class JourneyManager {
     /**
      * Validates departure and arrival stations of a journey
-     * @param journey - whose stations need to be validated
+     * //@param journey - whose stations need to be validated
      * @throws RailwayException - train cannot leave and arrive at the same station
      * */
-    public void validateStations(Journey journey) throws RailwayException {
-        if(journey.getDepartureStation().equals(journey.getArrivalStation())){
+    public void validateStations(RailwayStation departureStation, RailwayStation arrivalStation) throws RailwayException {
+        if(departureStation.equals(arrivalStation)){
             throw new RailwayException("Train cannot leave and arrive at the same station.");
         }
     }
     /**
      * Validates departure and arrival dates of a journey
-     * @param journey - whose dates need to be validated
+     * //@param journey - whose dates need to be validated
      * @throws RailwayException - train cannot arrive before it leaves
      * */
-    public void validateDate(Journey journey) throws RailwayException {
-        if(journey.getDepartureDate().toLocalDate().isAfter(journey.getArrivalDate().toLocalDate())){
+    public void validateDates(java.sql.Date departureDate, java.sql.Date arrivalDate) throws RailwayException {
+        if(departureDate.toLocalDate().isAfter(arrivalDate.toLocalDate())){
             throw new RailwayException("Date of the departure must be before the date of arrival or the same.");
         }
     }
@@ -61,8 +65,8 @@ public class JourneyManager {
      * @throws RailwayException
      * */
     public Journey add(Journey journey) throws RailwayException {
-        validateStations(journey);
-        validateDate(journey);
+        validateStations(journey.getDepartureStation(), journey.getArrivalStation());
+        validateDates(journey.getDepartureDate(), journey.getArrivalDate());
         validateTime(journey);
         return DaoFactory.journeyDao().add(journey);
     }
@@ -72,8 +76,8 @@ public class JourneyManager {
      * @throws RailwayException
      * */
     public void update(Journey journey) throws RailwayException {
-        validateStations(journey);
-        validateDate(journey);
+        validateStations(journey.getDepartureStation(), journey.getArrivalStation());
+        validateDates(journey.getDepartureDate(), journey.getArrivalDate());
         validateTime(journey);
         DaoFactory.journeyDao().update(journey);
     }
@@ -84,5 +88,10 @@ public class JourneyManager {
      * */
     public Journey getById(int id) throws RailwayException {
         return DaoFactory.journeyDao().getById(id);
+    }
+    public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time time, boolean arrival) throws RailwayException {
+        validateStations(departureStation, arrivalStation);
+        validateDates((java.sql.Date) departureDate, (java.sql.Date) arrivalDate);
+        return DaoFactory.journeyDao().search(departureStation, arrivalStation, (java.sql.Date) departureDate, (java.sql.Date) arrivalDate, time, arrival);
     }
 }
