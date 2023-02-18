@@ -83,6 +83,13 @@ public class HomeController {
         lastStage.close();
     }
 
-    public void searchJourneys(ActionEvent actionEvent) {
-    }
+    public void searchJourneys(ActionEvent actionEvent){
+        try {
+            List<Journey> journeys = journeyManager.search(departure.getValue(), arrival.getValue(), Date.valueOf(date.getValue()), new Time(this.timeHH.getValue(), this.timeMM.getValue(), 0), true);
+            refreshJourneys(journeys);
+        }
+        catch(RailwayException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK ).show();
+        }
+        }
 }

@@ -55,5 +55,5 @@ public interface JourneyDao extends Dao<Journey>{
      * @return list of journeys
      * */
     List<Journey> searchByArrivalTime(Time arrivalTime) throws RailwayException;
-    List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time time, boolean arrival) throws RailwayException;
+    List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date date, Time time, boolean arrival) throws RailwayException;
 }

@@ -89,9 +89,8 @@ public class JourneyManager {
     public Journey getById(int id) throws RailwayException {
         return DaoFactory.journeyDao().getById(id);
     }
-    public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time time, boolean arrival) throws RailwayException {
+    public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date date, Time time, boolean arrival) throws RailwayException {
         validateStations(departureStation, arrivalStation);
-        validateDates((java.sql.Date) departureDate, (java.sql.Date) arrivalDate);
-        return DaoFactory.journeyDao().search(departureStation, arrivalStation, (java.sql.Date) departureDate, (java.sql.Date) arrivalDate, time, arrival);
+        return DaoFactory.journeyDao().search(departureStation, arrivalStation, (java.sql.Date) date, time, arrival);
     }
 }
