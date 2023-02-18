@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.Controllers;
 
 import ba.unsa.etf.rpr.App;
+import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -40,6 +42,8 @@ public class HomeController {
     public DatePicker date;
     public ComboBox<RailwayStation> arrival;
     public ComboBox<RailwayStation> departure;
+    public TableView journeyTable;
+    JourneyManager journeyManager = new JourneyManager();
     RailwayStationManager stationManager = new RailwayStationManager();
     public void initialize() {
         try {
@@ -56,6 +60,10 @@ public class HomeController {
         } catch (RailwayException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+    }
+    private void refreshJourneys(List<Journey> collection){
+        journeyTable.setItems(FXCollections.observableList(collection));
+        journeyTable.refresh();
     }
     public void actionExit(ActionEvent actionEvent) {
         System.exit(0);

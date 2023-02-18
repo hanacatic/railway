@@ -214,7 +214,7 @@
                   </GridPane>
                </children>
             </GridPane>
-            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="118.0" prefWidth="711.0" GridPane.rowIndex="1">
+            <TableView fx:id="journeyTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="118.0" prefWidth="711.0" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="departureStation" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="-1.0" text="Departure Station" />
                 <TableColumn fx:id="arrivalStation" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="-1.0" text="Arrival Station" />
