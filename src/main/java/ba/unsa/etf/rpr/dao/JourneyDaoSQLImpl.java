@@ -96,7 +96,8 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
     }
 
     @Override
-    public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time time, boolean arrival) {
-        return null;
+    public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date departureDate, Date arrivalDate, Time time, boolean arrival) throws RailwayException {
+        List<Journey> journeys = executeQuery("SELECT * FROM journeys WHERE departureStation = ? AND arrivalStation = ? AND departureDate = ? AND arrivalDate = ?", new Object[]{departureStation.getId(), arrivalStation.getId(), departureDate, arrivalDate});
+        return journeys;
     }
 }
