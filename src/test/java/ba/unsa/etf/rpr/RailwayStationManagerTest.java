@@ -2,16 +2,20 @@ package ba.unsa.etf.rpr;
 
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.RailwayStationDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.mockito.Mockito.when;
 
 public class RailwayStationManagerTest {
     private RailwayStationManager stationManager;
@@ -43,5 +47,16 @@ public class RailwayStationManagerTest {
 
         Assertions.assertTrue(true);
         Mockito.verify(stationManager).add(newStation);
+    }
+    @Test
+    void add() throws RailwayException {
+        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+        daoFactoryMockedStatic.when(DaoFactory::railwayStationDao).thenReturn(stationDaoSQLMock);
+        when(DaoFactory.railwayStationDao().getAll()).thenReturn(stations);
+        Mockito.doCallRealMethod().when(stationManager).add(station);
+        Assertions.assertThrows(RailwayException.class, ()->{stationManager.add(station);});
+        daoFactoryMockedStatic.verify(DaoFactory::railwayStationDao);
+        Mockito.verify(stationManager).add(station);
+        daoFactoryMockedStatic.close();
     }
 }
