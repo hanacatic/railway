@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr;
 
 import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.JourneyDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
@@ -9,12 +10,15 @@ import ba.unsa.etf.rpr.domain.Train;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.mockito.Mockito.when;
 
 public class JourneyManagerTest {
     private JourneyManager journeyManager;
@@ -52,6 +56,7 @@ public class JourneyManagerTest {
         journey.setDepartureDate(new Date(2023, 3, 18));
         journey.setDepartureTime(new Time(15000000));
         journey.setArrivalTime(new Time(15600000));
+        journey.setId(1);
         journeyDaoSQLMock = Mockito.mock(JourneyDaoSQLImpl.class);
         journeys = new ArrayList<Journey>();
         journeys.add(journey);
@@ -63,5 +68,17 @@ public class JourneyManagerTest {
 
         Assertions.assertTrue(true);
         Mockito.verify(journeyManager).add(newJourney);
+    }
+
+    @Test
+    void add() throws RailwayException {
+        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+        daoFactoryMockedStatic.when(DaoFactory::journeyDao).thenReturn(journeyDaoSQLMock);
+        when(DaoFactory.journeyDao().getAll()).thenReturn(journeys);
+        Mockito.doCallRealMethod().when(journeyManager).add(journey);
+        Assertions.assertThrows(RailwayException.class, ()->{journeyManager.add(journey);});
+        daoFactoryMockedStatic.verify(DaoFactory::journeyDao);
+        Mockito.verify(journeyManager).add(journey);
+        daoFactoryMockedStatic.close();
     }
 }
