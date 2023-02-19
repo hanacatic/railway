@@ -1,14 +1,19 @@
 package ba.unsa.etf.rpr;
 
+import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.TrainDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestClassOrder;
+import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -38,6 +43,30 @@ public class TrainManagerTest {
         trainDaoSQLMock = Mockito.mock(TrainDaoSQLImpl.class);
         trains = new ArrayList<Train>();
         trains.add(train);
+    }
+    @Test
+    void validateTrainNameTest() throws RailwayException {
+        String correctName = "Duck";
+        try{
+            Mockito.doCallRealMethod().when(trainManager).validateTrainName(correctName);
+        }catch(RailwayException e){
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+
+        String incorrectNameShort = "";
+        Mockito.doCallRealMethod().when(trainManager).validateTrainName(incorrectNameShort);
+        RailwayException eShort = Assertions.assertThrows(RailwayException.class, ()->{
+            trainManager.validateTrainName(incorrectNameShort);
+        }, "Train name must be between 1 and 60 chars.");
+        Assertions.assertEquals(eShort.getMessage(), "Train name must be between 1 and 60 chars.");
+
+        String incorrectNameLong = RandomStringUtils.randomAlphabetic(60);
+        Mockito.doCallRealMethod().when(trainManager).validateTrainName(incorrectNameLong);
+        RailwayException eLong = Assertions.assertThrows(RailwayException.class, ()->{
+            trainManager.validateTrainName(incorrectNameShort);
+        }, "Train name must be between 1 and 60 chars.");
+        Assertions.assertEquals(eLong.getMessage(), "Train name must be between 1 and 60 chars.");
     }
     /**
      * Tests adding a train
@@ -98,6 +127,8 @@ public class TrainManagerTest {
         Mockito.doCallRealMethod().when(trainManager).update(train);
 
         Train newTrain = new Train(train.getName(), train.getDateBought());
+        Mockito.doCallRealMethod().when(trainManager).add(train);
+        Mockito.doCallRealMethod().when(trainManager).update(train);
         trainManager.add(newTrain);
         daoFactoryMockedStatic.verify(DaoFactory::trainDao);
         Mockito.verify(trainManager).add(newTrain);
