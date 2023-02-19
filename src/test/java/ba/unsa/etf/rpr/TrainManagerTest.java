@@ -40,7 +40,7 @@ public class TrainManagerTest {
      * @throws RailwayException
      * */
     @Test
-    void addNewTrain() throws RailwayException {
+    void addNewTrainTest() throws RailwayException {
         Train newTrain = new Train("Emily", new Date(120000000));
         trainManager.add(newTrain);
         Assertions.assertTrue(true);
@@ -51,14 +51,30 @@ public class TrainManagerTest {
      * @throws RailwayException
      * */
     @Test
-    void add() throws RailwayException {
+    void addTrainWithIdTest() throws RailwayException {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
         daoFactoryMockedStatic.when(DaoFactory::trainDao).thenReturn(trainDaoSQLMock);
         when(DaoFactory.trainDao().getAll()).thenReturn(trains);
         Mockito.doCallRealMethod().when(trainManager).add(train);
+
         Assertions.assertThrows(RailwayException.class, () -> {trainManager.add(train);});
+
         daoFactoryMockedStatic.verify(DaoFactory::trainDao);
         Mockito.verify(trainManager).add(train);
+        daoFactoryMockedStatic.close();
+    }
+    @Test
+    void addTrainNoIdTest() throws RailwayException {
+        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+        daoFactoryMockedStatic.when(DaoFactory::trainDao).thenReturn(trainDaoSQLMock);
+        when(DaoFactory.trainDao().getAll()).thenReturn(trains);
+        Mockito.doCallRealMethod().when(trainManager).add(train);
+
+        Train newTrain = new Train(train.getName(), train.getDateBought());
+        Assertions.assertDoesNotThrow(()->{trainManager.add(newTrain);});
+
+        daoFactoryMockedStatic.verify(DaoFactory::trainDao);
+        Mockito.verify(trainManager).add(newTrain);
         daoFactoryMockedStatic.close();
     }
 
