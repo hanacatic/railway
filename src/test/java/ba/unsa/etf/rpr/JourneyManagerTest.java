@@ -18,6 +18,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 /**
  * Tests for JourneyManager class
@@ -86,9 +87,42 @@ public class JourneyManagerTest {
         daoFactoryMockedStatic.when(DaoFactory::journeyDao).thenReturn(journeyDaoSQLMock);
         when(DaoFactory.journeyDao().getAll()).thenReturn(journeys);
         Mockito.doCallRealMethod().when(journeyManager).add(journey);
+
         Assertions.assertThrows(RailwayException.class, ()->{journeyManager.add(journey);});
+
         daoFactoryMockedStatic.verify(DaoFactory::journeyDao);
         Mockito.verify(journeyManager).add(journey);
+        daoFactoryMockedStatic.close();
+    }
+
+    @Test
+    void updateJourneyTest() throws RailwayException {
+        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+        daoFactoryMockedStatic.when(DaoFactory::journeyDao).thenReturn(journeyDaoSQLMock);
+        when(DaoFactory.journeyDao().getAll()).thenReturn(journeys);
+        Mockito.doCallRealMethod().when(journeyManager).add(journey);
+        Mockito.doCallRealMethod().when(journeyManager).update(journey);
+
+        Journey newJourney = new Journey();
+        newJourney.setTrain(journey.getTrain());
+        newJourney.setDepartureStation(journey.getDepartureStation());
+        newJourney.setArrivalStation(journey.getArrivalStation());
+        newJourney.setDepartureDate(journey.getDepartureDate());
+        newJourney.setArrivalDate(journey.getArrivalDate());
+        newJourney.setDepartureTime(journey.getDepartureTime());
+        newJourney.setArrivalTime(journey.getArrivalTime());
+        journeyManager.add(newJourney);
+        daoFactoryMockedStatic.verify(DaoFactory::journeyDao);
+        Mockito.verify(journeyManager).add(newJourney);
+
+        Assertions.assertNotNull(journey.getId());
+
+        newJourney.setArrivalTime(new Time(newJourney.getArrivalTime().getTime()+100000));
+        journeyManager.update(newJourney);
+        Assertions.assertNotEquals(newJourney.getArrivalTime(), journey.getArrivalTime());
+
+        daoFactoryMockedStatic.verify(DaoFactory::journeyDao);
+        Mockito.verify(journeyManager).update(newJourney);
         daoFactoryMockedStatic.close();
     }
 }
