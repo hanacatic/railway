@@ -19,7 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-
+/**
+ * Tests for JourneyManager class
+ * @author Hana Catic
+ * */
 public class JourneyManagerTest {
     private JourneyManager journeyManager;
     private JourneyDaoSQLImpl journeyDaoSQLMock;
@@ -61,17 +64,24 @@ public class JourneyManagerTest {
         journeys = new ArrayList<Journey>();
         journeys.add(journey);
     }
+    /**
+     * Tests adding a journey
+     * @throws RailwayException
+     * */
     @Test
-    void addNewJourney() throws RailwayException {
+    void addNewJourneyTest() throws RailwayException {
         Journey newJourney = new Journey(train, station2, station1, new Date(2023, 2, 28), new Date(2023,2,28), new Time(1900000), new Time(2300000));
         journeyManager.add(newJourney);
 
         Assertions.assertTrue(true);
         Mockito.verify(journeyManager).add(newJourney);
     }
-
+    /**
+     * Tests adding a journey that has a set id
+     * @throws RailwayException
+     * */
     @Test
-    void add() throws RailwayException {
+    void addJourneyWithIdTest() throws RailwayException {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
         daoFactoryMockedStatic.when(DaoFactory::journeyDao).thenReturn(journeyDaoSQLMock);
         when(DaoFactory.journeyDao().getAll()).thenReturn(journeys);

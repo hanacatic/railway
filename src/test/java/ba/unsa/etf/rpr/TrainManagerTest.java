@@ -17,7 +17,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
-
+/**
+ * Tests for TrainManager class
+ * @author Hana Catic
+ * */
 public class TrainManagerTest {
     private TrainManager trainManager;
     private TrainDaoSQLImpl trainDaoSQLMock;
@@ -47,7 +50,7 @@ public class TrainManagerTest {
         Mockito.verify(trainManager).add(newTrain);
     }
     /**
-     * Tests adding a train that has set id
+     * Tests adding a train that has a set id
      * @throws RailwayException
      * */
     @Test
@@ -63,6 +66,10 @@ public class TrainManagerTest {
         Mockito.verify(trainManager).add(train);
         daoFactoryMockedStatic.close();
     }
+    /**
+     * Tests adding a train that doesn't have a set id
+     * @throws RailwayException
+     * */
     @Test
     void addTrainNoIdTest() throws RailwayException {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
