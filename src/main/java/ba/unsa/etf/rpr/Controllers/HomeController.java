@@ -8,6 +8,7 @@ import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import com.fasterxml.jackson.databind.deser.impl.PropertyValue;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -55,8 +56,8 @@ public class HomeController {
             arrivalDate.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
             departureTime.setCellValueFactory(new PropertyValueFactory<Journey, Time>("departureTime"));
             arrivalTime.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
-            duration.setCellValueFactory(new PropertyValueFactory<Journey, Time>("id"));
-
+            duration.setCellValueFactory(c->new SimpleObjectProperty<Time>(new Time(c.getValue().getArrivalTime().getTime()
+            - c.getValue().getDepartureTime().getTime())));
         } catch (RailwayException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
