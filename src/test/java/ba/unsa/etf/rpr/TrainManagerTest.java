@@ -8,6 +8,7 @@ import ba.unsa.etf.rpr.domain.Train;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -82,6 +83,28 @@ public class TrainManagerTest {
 
         daoFactoryMockedStatic.verify(DaoFactory::trainDao);
         Mockito.verify(trainManager).add(newTrain);
+        daoFactoryMockedStatic.close();
+    }
+    @Test
+    void updateTrainTest() throws RailwayException {
+        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+        daoFactoryMockedStatic.when(DaoFactory::trainDao).thenReturn(trainDaoSQLMock);
+        when(DaoFactory.trainDao().getAll()).thenReturn(trains);
+        Mockito.doCallRealMethod().when(trainManager).add(train);
+        Mockito.doCallRealMethod().when(trainManager).update(train);
+
+        Train newTrain = new Train(train.getName(), train.getDateBought());
+        trainManager.add(newTrain);
+        daoFactoryMockedStatic.verify(DaoFactory::trainDao);
+        Mockito.verify(trainManager).add(newTrain);
+        Assertions.assertNotNull(newTrain.getId());
+
+        newTrain.setName("Ben");
+        trainManager.update(newTrain);
+        Assertions.assertEquals("Ben", newTrain.getName());
+
+        daoFactoryMockedStatic.verify(DaoFactory::trainDao);
+        Mockito.verify(trainManager).update(newTrain);
         daoFactoryMockedStatic.close();
     }
 
