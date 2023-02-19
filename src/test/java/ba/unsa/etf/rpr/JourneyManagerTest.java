@@ -94,7 +94,10 @@ public class JourneyManagerTest {
         Mockito.verify(journeyManager).add(journey);
         daoFactoryMockedStatic.close();
     }
-
+    /**
+     * Tests updating a journey
+     * @throws RailwayException
+     * */
     @Test
     void updateJourneyTest() throws RailwayException {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);

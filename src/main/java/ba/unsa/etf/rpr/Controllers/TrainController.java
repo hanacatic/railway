@@ -9,10 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.Date;
-
+/**
+ * Controller managing Admin Train Form
+ * @author Hana Catic
+ * */
 public class TrainController {
+    //manager
     private final TrainManager trainManager = new TrainManager();
-
+    //components
     public TextField trainName;
     public DatePicker trainDateBought;
     public TableView trainsTable;
@@ -33,7 +37,9 @@ public class TrainController {
                 }
             });
     }
-
+    /**
+     * fetches trains from database
+     * */
     private void refreshTrains(){
         try{
             trainsTable.setItems(FXCollections.observableList(trainManager.getAll()));

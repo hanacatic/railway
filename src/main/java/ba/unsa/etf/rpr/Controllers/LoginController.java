@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 /**
- * Controller for managing Login
+ * Controller managing Login
  * @author Hana Catic
  * */
 public class LoginController {
