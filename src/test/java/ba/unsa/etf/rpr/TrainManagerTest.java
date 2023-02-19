@@ -101,6 +101,7 @@ public class TrainManagerTest {
         trainManager.add(newTrain);
         daoFactoryMockedStatic.verify(DaoFactory::trainDao);
         Mockito.verify(trainManager).add(newTrain);
+
         Assertions.assertNotNull(newTrain.getId());
 
         newTrain.setName("Ben");
