@@ -41,6 +41,7 @@ public class RailwayStationManagerTest {
     }
     /**
      * Tests validation of station name
+     * @throws  RailwayException
      * */
     @Test
     void validateStationNameTest() throws RailwayException {
@@ -67,6 +68,7 @@ public class RailwayStationManagerTest {
     }
     /**
      * Tests validation of station address
+     * @throws RailwayException
      * */
     @Test
     void validateStationAddressTest() throws RailwayException {
@@ -91,6 +93,33 @@ public class RailwayStationManagerTest {
             stationManager.validateStationAddress(incorrectAddressLong);
         }, "Station address must be between 1 and 255 chars.");
         Assertions.assertEquals(eLong.getMessage(), "Station address must be between 1 and 255 chars.");
+    }
+    /**
+     * Tests validation of station city
+     * */
+    @Test
+    void validateStationCityTest() throws RailwayException {
+        String correctCity = "Sarajevo";
+        try{
+            Mockito.doCallRealMethod().when(stationManager).validateStationCity(correctCity);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+
+        String incorrectCityShort = "";
+        Mockito.doCallRealMethod().when(stationManager).validateStationCity(incorrectCityShort);
+        RailwayException eShort = Assertions.assertThrows(RailwayException.class, ()->{
+           stationManager.validateStationCity(incorrectCityShort);
+        }, "Station city name must be between 1 and 45 chars.");
+        Assertions.assertEquals(eShort.getMessage(), "Station city name must be between 1 and 45 chars.");
+
+        String incorrectCityLong = RandomStringUtils.randomAlphabetic(46);
+        Mockito.doCallRealMethod().when(stationManager).validateStationCity(incorrectCityLong);
+        RailwayException eLong = Assertions.assertThrows(RailwayException.class, ()->{
+            stationManager.validateStationCity(incorrectCityLong);
+        }, "Station city name must be between 1 and 45 chars.");
+        Assertions.assertEquals(eLong.getMessage(), "Station city name must be between 1 and 45 chars.");
     }
     /**
      * Tests adding a railway station
