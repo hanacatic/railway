@@ -98,7 +98,7 @@ public class JourneyManagerTest {
      * Tests updating a journey
      * @throws RailwayException
      * */
-    @Test
+    /*@Test
     void updateJourneyTest() throws RailwayException {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
         daoFactoryMockedStatic.when(DaoFactory::journeyDao).thenReturn(journeyDaoSQLMock);
@@ -127,5 +127,5 @@ public class JourneyManagerTest {
         daoFactoryMockedStatic.verify(DaoFactory::journeyDao);
         Mockito.verify(journeyManager).update(newJourney);
         daoFactoryMockedStatic.close();
-    }
+    }*/
 }

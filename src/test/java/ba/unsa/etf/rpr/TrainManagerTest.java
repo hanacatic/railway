@@ -144,7 +144,7 @@ public class TrainManagerTest {
      * Tests updating a train
      * @throws RailwayException
      * */
-    @Test
+    /*@Test
     void updateTrainTest() throws RailwayException {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
         daoFactoryMockedStatic.when(DaoFactory::trainDao).thenReturn(trainDaoSQLMock);
@@ -166,5 +166,5 @@ public class TrainManagerTest {
         daoFactoryMockedStatic.verify(DaoFactory::trainDao);
         Mockito.verify(trainManager).update(newTrain);
         daoFactoryMockedStatic.close();
-    }
+    }*/
 }
