@@ -3,3 +3,4 @@ This is a simple three layered application in Java that allows customer to searc
 ## User Interface
 ## Admin User Interface
 This Interface provides not only a detailed overview of all journeys, train and railway stations individually but options of adding, updating and deleting journeys, trains and railway stations through respective forms.
+## Command Line Interface
