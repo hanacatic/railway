@@ -65,7 +65,33 @@ public class RailwayStationManagerTest {
         },"Station name must be between 1 and 255 chars.");
         Assertions.assertEquals(eLong.getMessage(), "Station name must be between 1 and 255 chars.");
     }
+    /**
+     * Tests validation of station address
+     * */
+    @Test
+    void validateStationAddressTest() throws RailwayException {
+        String correctAddress = "Put zivota 2";
+        try{
+            Mockito.doCallRealMethod().when(stationManager).validateStationAddress(correctAddress);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
 
+        String incorrectAddressShort = "";
+        Mockito.doCallRealMethod().when(stationManager).validateStationAddress(incorrectAddressShort);
+        RailwayException eShort = Assertions.assertThrows(RailwayException.class, ()->{
+            stationManager.validateStationAddress(incorrectAddressShort);
+        }, "Station address must be between 1 and 255 chars.");
+        Assertions.assertEquals(eShort.getMessage(), "Station address must be between 1 and 255 chars.");
+
+        String incorrectAddressLong = RandomStringUtils.randomAlphabetic(256);
+        Mockito.doCallRealMethod().when(stationManager).validateStationAddress(incorrectAddressLong);
+        RailwayException eLong = Assertions.assertThrows(RailwayException.class, ()->{
+            stationManager.validateStationAddress(incorrectAddressLong);
+        }, "Station address must be between 1 and 255 chars.");
+        Assertions.assertEquals(eLong.getMessage(), "Station address must be between 1 and 255 chars.");
+    }
     /**
      * Tests adding a railway station
      * @throws RailwayException
