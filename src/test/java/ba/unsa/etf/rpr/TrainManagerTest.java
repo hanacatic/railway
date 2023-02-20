@@ -18,10 +18,13 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 /**
  * Tests for TrainManager class
@@ -44,6 +47,9 @@ public class TrainManagerTest {
         trains = new ArrayList<Train>();
         trains.add(train);
     }
+    /**
+     * Tests validation of train name
+     * */
     @Test
     void validateTrainNameTest() throws RailwayException {
         String correctName = "Duck";
@@ -67,6 +73,26 @@ public class TrainManagerTest {
             trainManager.validateTrainName(incorrectNameShort);
         }, "Train name must be between 1 and 60 chars.");
         Assertions.assertEquals(eLong.getMessage(), "Train name must be between 1 and 60 chars.");
+    }
+    /**
+     * Tests validation of date bought
+     * */
+    @Test
+    void validateDateBought() throws RailwayException {
+        Date validDate = new Date(2023, 2, 20);
+        try{
+            Mockito.doCallRealMethod().when(trainManager).validateTrainDateBought(validDate);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+        LocalDate temp = LocalDate.now(ZoneId.systemDefault()).plusDays(1);
+        Date invalidDate = new Date(temp.getYear(), temp.getMonth().getValue(), temp.getDayOfMonth());
+        Mockito.doCallRealMethod().when(trainManager).validateTrainDateBought(invalidDate);
+        RailwayException e = Assertions.assertThrows(RailwayException.class, ()->{
+            trainManager.validateTrainDateBought(invalidDate);
+        }, "Date of train purchase cannot be in the future.");
+        Assertions.assertEquals(e.getMessage(), "Date of train purchase cannot be in the future.");
     }
     /**
      * Tests adding a train
@@ -123,17 +149,15 @@ public class TrainManagerTest {
         MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
         daoFactoryMockedStatic.when(DaoFactory::trainDao).thenReturn(trainDaoSQLMock);
         when(DaoFactory.trainDao().getAll()).thenReturn(trains);
-        Mockito.doCallRealMethod().when(trainManager).add(train);
-        Mockito.doCallRealMethod().when(trainManager).update(train);
+        when(trainManager.add(any(Train.class))).thenCallRealMethod();
+        when(trainManager.update(any(Train.class))).thenCallRealMethod();
 
         Train newTrain = new Train(train.getName(), train.getDateBought());
-        Mockito.doCallRealMethod().when(trainManager).add(train);
-        Mockito.doCallRealMethod().when(trainManager).update(train);
+
         trainManager.add(newTrain);
+        Assertions.assertNotNull(newTrain.getId());
         daoFactoryMockedStatic.verify(DaoFactory::trainDao);
         Mockito.verify(trainManager).add(newTrain);
-
-        Assertions.assertNotNull(newTrain.getId());
 
         newTrain.setName("Ben");
         trainManager.update(newTrain);
@@ -143,6 +167,4 @@ public class TrainManagerTest {
         Mockito.verify(trainManager).update(newTrain);
         daoFactoryMockedStatic.close();
     }
-
-
 }
