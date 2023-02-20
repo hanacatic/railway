@@ -96,6 +96,7 @@ public class RailwayStationManagerTest {
     }
     /**
      * Tests validation of station city
+     * @throws RailwayException
      * */
     @Test
     void validateStationCityTest() throws RailwayException {
@@ -120,6 +121,33 @@ public class RailwayStationManagerTest {
             stationManager.validateStationCity(incorrectCityLong);
         }, "Station city name must be between 1 and 45 chars.");
         Assertions.assertEquals(eLong.getMessage(), "Station city name must be between 1 and 45 chars.");
+    }
+    /**
+     * Tests validation of station country
+     * @throws RailwayException
+     * */
+    @Test
+    void validateStationCountry() throws RailwayException {
+        String correctCountry = "Bosnia and Herzegovina";
+        try{
+            Mockito.doCallRealMethod().when(stationManager).validateStationCountry(correctCountry);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+        String incorrectCountryShort = "";
+        Mockito.doCallRealMethod().when(stationManager).validateStationCountry(incorrectCountryShort);
+        RailwayException eShort = Assertions.assertThrows(RailwayException.class, ()->{
+            stationManager.validateStationCountry(incorrectCountryShort);
+        },"Station country name must be between 1 and 255 chars.");
+        Assertions.assertEquals(eShort.getMessage(), "Station country name must be between 1 and 255 chars.");
+
+        String incorrectCountryLong = RandomStringUtils.randomAlphabetic(256);
+        Mockito.doCallRealMethod().when(stationManager).validateStationCountry(incorrectCountryLong);
+        RailwayException eLong = Assertions.assertThrows(RailwayException.class, ()->{
+            stationManager.validateStationCountry(incorrectCountryLong);
+        },"Station country name must be between 1 and 255 chars.");
+        Assertions.assertEquals(eLong.getMessage(), "Station country name must be between 1 and 255 chars.");
     }
     /**
      * Tests adding a railway station
