@@ -84,6 +84,26 @@ public class JourneyManagerTest {
         Assertions.assertEquals(e.getMessage(), "Train cannot leave and arrive at the same station.");
     }
     /**
+     * Tests validation of dates
+     * @throws RailwayException
+     * */
+    @Test
+    void validateDatesTest() throws RailwayException {
+        Date date1 = new Date(2023, 2, 23);
+        Date date2 = new Date(2023, 2, 24);
+        try{
+            Mockito.doCallRealMethod().when(journeyManager).validateDates(date1, date2);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+        Mockito.doCallRealMethod().when(journeyManager).validateDates(date2, date1);
+        RailwayException e = Assertions.assertThrows(RailwayException.class, ()->{
+           journeyManager.validateDates(date2, date1);
+        }, "Date of the departure must be before the date of arrival or the same.");
+        Assertions.assertEquals(e.getMessage(), "Date of the departure must be before the date of arrival or the same.");
+    }
+    /**
      * Tests adding a journey
      * @throws RailwayException
      * */
