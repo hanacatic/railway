@@ -53,6 +53,11 @@ public class App {
         train = trains.stream().filter(t -> t.getName().toLowerCase().equals(trainName.toLowerCase())).findAny().get();
         return train;
     }
+    public static RailwayStation searchThroughStations(List<RailwayStation> stations, String stationName){
+        RailwayStation station = null;
+        station = stations.stream().filter(s-> s.getName().toLowerCase().equals(stationName.toLowerCase())).findAny().get();
+        return station;
+    }
     public static void main( String[] args ) throws Exception {
         Options options = addOptions();
         CommandLineParser commandLineParser = new DefaultParser();
@@ -92,14 +97,33 @@ public class App {
             TrainManager trainManager = new TrainManager();
             Train train = null;
             try {
-                searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+                train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
             }catch(Exception e) {
                 System.out.println("There is no train with this name in the list!");
                 System.out.println("Try again!");
+                System.exit(1);
+            }
+            RailwayStationManager stationManager = new RailwayStationManager();
+            List<RailwayStation> stations = stationManager.getAll();
+            RailwayStation departureStation = null;
+            RailwayStation arrivalStation = null;
+            try{
+                departureStation = searchThroughStations(stations, c.getArgList().get(1));
+                arrivalStation = searchThroughStations(stations, c.getArgList().get(2));
+            }
+            catch(Exception e){
+                System.out.println("There is no railway station with this name in the list!");
+                System.out.println("Try again!");
+                System.exit(1);
             }
             JourneyManager journeyManager = new JourneyManager();
             Journey journey = new Journey();
-            try{}
+            try{
+                journey.setTrain(train);
+                journey.setDepartureStation(departureStation);
+                journey.setArrivalStation(arrivalStation);
+                journey.setDepartureDate(new Date(Integer.parseInt(c.getArgList().get(3)) - 1900, Integer.parseInt(c.getArgList().get(4)) - 1, Integer.parseInt(c.getArgList().get(5))));
+            }
             catch (Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
