@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr;
 import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
+import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 import org.apache.commons.cli.*;
@@ -57,13 +58,29 @@ public class App {
                 train.setName(c.getArgList().get(0));
                 train.setDateBought(new Date(Integer.parseInt(c.getArgList().get(1))-1900, Integer.parseInt(c.getArgList().get(2))-1, Integer.parseInt(c.getArgList().get(3))));
                 trainManager.add(train);
-                System.out.println("Train has been added successfully");
+                System.out.println("Train has been added successfully.");
             }catch(Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
                 System.exit(1);
             }
 
+        }
+        else if (c.hasOption(addRailwayStation.getOpt()) || c.hasOption(addRailwayStation.getLongOpt())){
+            try{
+                RailwayStationManager stationManager = new RailwayStationManager();
+                RailwayStation station = new RailwayStation();
+                station.setName(c.getArgList().get(0));
+                station.setAddress(c.getArgList().get(1));
+                station.setCity(c.getArgList().get(2));
+                station.setCountry(c.getArgList().get(3));
+                stationManager.add(station);
+                System.out.println("Railway station has been added successfully.");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
         }
         else if (c.hasOption(getTrains.getOpt()) || c.hasOption(getTrains.getLongOpt())){
             TrainManager trainManager = new TrainManager();
