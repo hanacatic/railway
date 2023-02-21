@@ -1,6 +1,9 @@
 package ba.unsa.etf.rpr;
 
+import ba.unsa.etf.rpr.Bussiness.JourneyManager;
+import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
+import ba.unsa.etf.rpr.domain.RailwayStation;
 import org.apache.commons.cli.*;
 import net.bytebuddy.asm.Advice;
 import org.apache.commons.cli.*;
@@ -13,8 +16,8 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Stream;
 /**
- * Hello world!
- *
+ * Command Line Interface - CLI
+ * @author Hana Catic
  */
 public class App {
     private static final Option addTrain = new Option("t", "add-train", false, "Adding new train to Railway database");
@@ -51,6 +54,18 @@ public class App {
         else if (c.hasOption(getTrains.getOpt()) || c.hasOption(getTrains.getLongOpt())){
             TrainManager trainManager = new TrainManager();
             trainManager.getAll().forEach(train -> System.out.println(train.getName()));
+        }
+        else if (c.hasOption(getRailwayStations.getOpt()) || c.hasOption(getRailwayStations.getLongOpt())){
+            RailwayStationManager stationManager = new RailwayStationManager();
+            stationManager.getAll().forEach(station->{
+                System.out.println(station.toString());
+            });
+        }
+        else  if (c.hasOption(getJourneys.getOpt()) || c.hasOption(getJourneys.getLongOpt())){
+            JourneyManager journeyManager = new JourneyManager();
+            journeyManager.getAll().forEach(journey -> {
+                System.out.println("Train: " + journey.getTrain().getName() + "    Departure: " + journey.getDepartureStation().toString() + " " + journey.getDepartureDate().toString() + " " + journey.getDepartureTime().toString() + "    Arrival: " + journey.getArrivalStation().toString() + " " + journey.getArrivalDate().toString() + " " + journey.getArrivalTime());
+            });
         }
         else {
             printFormattedOptions(options);
