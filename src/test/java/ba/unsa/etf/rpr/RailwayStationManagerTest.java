@@ -19,7 +19,10 @@ import java.util.List;
 import java.util.Random;
 
 import static org.mockito.Mockito.when;
-
+/**
+ * Tests for RailwayStationManager class
+ * @author Hana Catic
+ * */
 public class RailwayStationManagerTest {
     private RailwayStationManager stationManager;
     private RailwayStationDaoSQLImpl stationDaoSQLMock;

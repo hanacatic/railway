@@ -18,7 +18,6 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 /**
  * Tests for JourneyManager class

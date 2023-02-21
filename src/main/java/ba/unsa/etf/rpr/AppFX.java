@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-
+/**
+ * Main class for JavaF framework
+ * */
 public class AppFX extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -17,9 +19,5 @@ public class AppFX extends Application {
         stage.setTitle("Railway stations");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
