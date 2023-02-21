@@ -7,9 +7,14 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+/**
+ * Controller for managing Admin Railway Station Form, editing, deleting, adding railway stations
+ * @author Hana Catic
+ * */
 public class RailwayStationController {
+    //manager
     private final RailwayStationManager stationManager = new RailwayStationManager();
+    //components
     public TextField stationName;
     public TextField stationAddress;
     public TextField stationCity;
@@ -37,7 +42,9 @@ public class RailwayStationController {
             }
         });
     }
-
+    /**
+     * fetches all railway stations from railwayStations table in database
+     * */
     private void refreshStations(){
         try{
             stationsTable.setItems(FXCollections.observableList(stationManager.getAll()));
@@ -46,6 +53,10 @@ public class RailwayStationController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+    /**
+     * Event handler for creating a railway station
+     * @param actionEvent
+     * */
     public void addStation(ActionEvent actionEvent) {
         try{
             RailwayStation station = new RailwayStation();
@@ -59,7 +70,10 @@ public class RailwayStationController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
+    /**
+     * Event handler for updating a railway station
+     * @param actionEvent
+     * */
     public void updateStation(ActionEvent actionEvent) {
         try{
             RailwayStation station = (RailwayStation) stationsTable.getSelectionModel().getSelectedItem();
@@ -73,7 +87,10 @@ public class RailwayStationController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
+    /**
+     * Event handler for railway station deletion
+     * @param actionEvent
+     * */
     public void deleteStation(ActionEvent actionEvent) {
         try{
             RailwayStation station = (RailwayStation) stationsTable.getSelectionModel().getSelectedItem();

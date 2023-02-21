@@ -48,7 +48,10 @@ public class TrainController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
+    /**
+     * Event handler for creating a train
+     * @param actionEvent
+     * */
     public void addTrain(ActionEvent actionEvent) {
         try{
             Train train = new Train();
@@ -60,8 +63,10 @@ public class TrainController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
-
+    /**
+     * Event handler for updating a train
+     * @param actionEvent
+     * */
     public void updateTrain(ActionEvent actionEvent) {
         try{
             Train train = (Train) trainsTable.getSelectionModel().getSelectedItem();
@@ -73,7 +78,10 @@ public class TrainController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
+    /**
+     * Event handler for train deletion
+     * @param actionEvent
+     * */
     public void deleteTrain(ActionEvent actionEvent) {
         try{
             Train train = (Train) trainsTable.getSelectionModel().getSelectedItem();

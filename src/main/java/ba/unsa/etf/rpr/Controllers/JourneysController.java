@@ -82,9 +82,9 @@ public class JourneysController {
      * */
     public void editingScene(String fxmlName, String sceneName){
         try{
-            ((Stage)journeyScreen.getScene().getWindow()).hide();
+            (journeyScreen.getScene().getWindow()).hide();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxmlName + ".fxml"));
-            Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            Scene scene = new Scene(fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle(sceneName);
@@ -92,7 +92,7 @@ public class JourneysController {
             stage.show();
             stage.setOnHiding(event ->{
                 ((Stage)journeyScreen.getScene().getWindow()).show();
-                refreshJourneys();;
+                refreshJourneys();
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -105,10 +105,10 @@ public class JourneysController {
      * */
     public void editJourneyScene(Integer journeyId) {
         try{
-            ((Stage)journeyScreen.getScene().getWindow()).hide();
+            (journeyScreen.getScene().getWindow()).hide();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/JourneyForm.fxml"));
             fxmlLoader.setController(new JourneyFormController(journeyId));
-            Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            Scene scene = new Scene(fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Edit Journey");
@@ -116,7 +116,7 @@ public class JourneysController {
             stage.show();
             stage.setOnHiding(event ->{
                 ((Stage)journeyScreen.getScene().getWindow()).show();
-                refreshJourneys();;
+                refreshJourneys();
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -125,7 +125,7 @@ public class JourneysController {
     }
     /**
      * Event handler for journey deletion with alert to confirm intention.
-     * @param journeyId
+     * @param journeyId of journey to be deleted
      * */
     public void deleteJourney(Integer journeyId){
         try{
@@ -141,25 +141,29 @@ public class JourneysController {
     }
     /**
      * Event handler for creating of a journey
+     * @param actionEvent
      * */
     public void addJourney(ActionEvent actionEvent) {
         editJourneyScene(null);
     }
     /**
      * Event handler for opening train section.
+     * @param actionEvent
      * */
 
-    public void editTrains(ActionEvent actionEvent) throws IOException {
+    public void editTrains(ActionEvent actionEvent){
         editingScene("train", "Edit Trains");
     }
     /**
      * Event handler for opening railway station section.
+     * @param actionEvent
      * */
-    public void editRailwayStations(ActionEvent actionEvent) throws IOException {
+    public void editRailwayStations(ActionEvent actionEvent){
         editingScene("railwayStation", "Edit Railway Stations");
     }
     /**
      * Event handler for log out, opening home screen.
+     * @param actionEvent
      * */
     public void logOut(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
