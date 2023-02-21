@@ -16,7 +16,8 @@ import java.util.List;
 public class JourneyManager {
     /**
      * Validates departure and arrival stations of a journey
-     * //@param journey - whose stations need to be validated
+     * @param departureStation departure station for journey
+     * @param arrivalStation arrival station for journey
      * @throws RailwayException - train cannot leave and arrive at the same station
      * */
     public void validateStations(RailwayStation departureStation, RailwayStation arrivalStation) throws RailwayException {
@@ -26,7 +27,8 @@ public class JourneyManager {
     }
     /**
      * Validates departure and arrival dates of a journey
-     * //@param journey - whose dates need to be validated
+     * @param departureDate departure date for journey
+     * @param arrivalDate arrival date for journey
      * @throws RailwayException - train cannot arrive before it leaves
      * */
     public void validateDates(java.sql.Date departureDate, java.sql.Date arrivalDate) throws RailwayException {
@@ -53,7 +55,7 @@ public class JourneyManager {
     }
     /**
      * Deletes an entry from journeys table in database
-     * @param id - of journey to be deleted
+     * @param id of journey to be deleted
      * @throws RailwayException
      * */
     public void delete(int id) throws RailwayException {
@@ -61,7 +63,7 @@ public class JourneyManager {
     }
     /**
      * Adds an entry to journeys table in database
-     * @param journey - to be added
+     * @param journey to be added
      * @throws RailwayException
      * */
     public Journey add(Journey journey) throws RailwayException {
@@ -75,7 +77,7 @@ public class JourneyManager {
     }
     /**
      * Updates an entry in journeys table in database
-     * @param journey - to be updated
+     * @param journey to be updated
      * @throws RailwayException
      * */
     public void update(Journey journey) throws RailwayException {
@@ -86,12 +88,20 @@ public class JourneyManager {
     }
     /**
      * Gets an entry from journeys table in database
-     * @param id - of entry in database
+     * @param id of entry in database
      * @throws RailwayException
      * */
     public Journey getById(int id) throws RailwayException {
         return DaoFactory.journeyDao().getById(id);
     }
+    /**
+     * Searches all journeys in journey table in database between given stations, on given dates after given time
+     * @param departureStation
+     * @param arrivalStation
+     * @param date of arrival or departure of journey
+     * @param time earliest time of arrival or departure of train in wanted journeys
+     * @param arrival determines whether the date refers to arrival or departure
+     * */
     public List<Journey> search(RailwayStation departureStation, RailwayStation arrivalStation, Date date, Time time, boolean arrival) throws RailwayException {
         validateStations(departureStation, arrivalStation);
         return DaoFactory.journeyDao().search(departureStation, arrivalStation, (java.sql.Date) date, time, arrival);
