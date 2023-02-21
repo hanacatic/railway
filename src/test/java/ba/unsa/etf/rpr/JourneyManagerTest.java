@@ -66,6 +66,24 @@ public class JourneyManagerTest {
         journeys.add(journey);
     }
     /**
+     * Testing validation of stations
+     * @throws RailwayException
+     * */
+    @Test
+    void validateStationsTest() throws RailwayException {
+        try{
+            Mockito.doCallRealMethod().when(journeyManager).validateStations(station1, station2);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+        Mockito.doCallRealMethod().when(journeyManager).validateStations(station1, station1);
+        RailwayException e = Assertions.assertThrows(RailwayException.class, ()->{
+            journeyManager.validateStations(station1, station1);
+        }, "Train cannot leave and arrive at the same station.");
+        Assertions.assertEquals(e.getMessage(), "Train cannot leave and arrive at the same station.");
+    }
+    /**
      * Tests adding a journey
      * @throws RailwayException
      * */
