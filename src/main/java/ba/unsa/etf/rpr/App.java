@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
 import ba.unsa.etf.rpr.domain.RailwayStation;
+import ba.unsa.etf.rpr.domain.Train;
 import org.apache.commons.cli.*;
 import net.bytebuddy.asm.Advice;
 import org.apache.commons.cli.*;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Stream;
@@ -49,7 +51,19 @@ public class App {
         CommandLineParser commandLineParser = new DefaultParser();
         CommandLine c = commandLineParser.parse(options, args);
         if(c.hasOption(addTrain.getOpt()) || c.hasOption(addTrain.getLongOpt())){
-            System.out.println("Train");
+            try{
+                TrainManager trainManager = new TrainManager();
+                Train train = new Train();
+                train.setName(c.getArgList().get(0));
+                train.setDateBought(new Date(Integer.parseInt(c.getArgList().get(1))-1900, Integer.parseInt(c.getArgList().get(2))-1, Integer.parseInt(c.getArgList().get(3))));
+                trainManager.add(train);
+                System.out.println("Train has been added successfully");
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+
         }
         else if (c.hasOption(getTrains.getOpt()) || c.hasOption(getTrains.getLongOpt())){
             TrainManager trainManager = new TrainManager();
