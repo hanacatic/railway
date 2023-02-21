@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Stream;
@@ -30,7 +31,7 @@ public class App {
 
     private static final Option getTrains = new Option("getT", "get-train", false, "Printing all trains from Railway database");
     private static final Option getRailwayStations = new Option("getR", "get-station", false, "Printing all railway stations from Railway database");
-    private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journey from Railway database");
+    private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journeys from Railway database");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -123,6 +124,11 @@ public class App {
                 journey.setDepartureStation(departureStation);
                 journey.setArrivalStation(arrivalStation);
                 journey.setDepartureDate(new Date(Integer.parseInt(c.getArgList().get(3)) - 1900, Integer.parseInt(c.getArgList().get(4)) - 1, Integer.parseInt(c.getArgList().get(5))));
+                journey.setDepartureTime(new Time(Integer.parseInt(c.getArgList().get(6)), Integer.parseInt(c.getArgList().get(7)), 0));
+                journey.setArrivalDate(new Date(Integer.parseInt(c.getArgList().get(8)) - 1900, Integer.parseInt(c.getArgList().get(9)) - 1, Integer.parseInt(c.getArgList().get(10))));
+                journey.setArrivalTime(new Time(Integer.parseInt(c.getArgList().get(11)), Integer.parseInt(c.getArgList().get(12)),0));
+                journeyManager.add(journey);
+                System.out.println("Journey has been successfully added!");
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
