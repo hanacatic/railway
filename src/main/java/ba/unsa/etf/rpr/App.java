@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
+import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 import org.apache.commons.cli.*;
@@ -47,6 +48,11 @@ public class App {
         options.addOption(getJourneys);
         return options;
     }
+    public static Train searchThroughTrains(List<Train> trains, String trainName){
+        Train train = null;
+        train = trains.stream().filter(t -> t.getName().toLowerCase().equals(trainName.toLowerCase())).findAny().get();
+        return train;
+    }
     public static void main( String[] args ) throws Exception {
         Options options = addOptions();
         CommandLineParser commandLineParser = new DefaultParser();
@@ -77,6 +83,24 @@ public class App {
                 stationManager.add(station);
                 System.out.println("Railway station has been added successfully.");
             } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
+        else if (c.hasOption(addJourney.getLongOpt()) || c.hasOption(addJourney.getLongOpt())){
+            TrainManager trainManager = new TrainManager();
+            Train train = null;
+            try {
+                searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+            }catch(Exception e) {
+                System.out.println("There is no train with this name in the list!");
+                System.out.println("Try again!");
+            }
+            JourneyManager journeyManager = new JourneyManager();
+            Journey journey = new Journey();
+            try{}
+            catch (Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
                 System.exit(1);
