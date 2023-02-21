@@ -7,5 +7,9 @@ Or Home Screen consists of a form that allows user to chose a departure station,
  </p>  
  
 ## Admin User Interface
-This Interface provides not only a detailed overview of all journeys, train and railway stations individually but options of adding, updating and deleting journeys, trains and railway stations through respective forms.
+This Interface provides not only a detailed overview of all journeys, train and railway stations individually but options of adding, updating and deleting journeys, trains and railway stations through respective forms. In oder to access this feature, user must first login in, as shown in picture below.   
+<p align = "center">
+<img width="300" alt="login" src="https://user-images.githubusercontent.com/115094201/220371549-88dda650-d75c-475f-b7e7-f42d67a54a87.png">
+</p>  
+ 
 ## Command Line Interface
