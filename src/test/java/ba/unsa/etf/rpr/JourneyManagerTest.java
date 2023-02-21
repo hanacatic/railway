@@ -104,6 +104,32 @@ public class JourneyManagerTest {
         Assertions.assertEquals(e.getMessage(), "Date of the departure must be before the date of arrival or the same.");
     }
     /**
+     * Tests validation of departure and arrival times
+     * @throws RailwayException
+     * */
+    @Test
+    void validateTimeTest() throws RailwayException {
+        try{
+            Mockito.doCallRealMethod().when(journeyManager).validateTime(journey);
+        } catch (RailwayException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+        Journey newJourney = new Journey();
+        newJourney.setTrain(journey.getTrain());
+        newJourney.setDepartureStation(journey.getDepartureStation());
+        newJourney.setArrivalStation(journey.getArrivalStation());
+        newJourney.setDepartureDate(journey.getDepartureDate());
+        newJourney.setArrivalDate(journey.getDepartureDate());
+        newJourney.setDepartureTime(journey.getArrivalTime());
+        newJourney.setArrivalTime(journey.getDepartureTime());
+        Mockito.doCallRealMethod().when(journeyManager).validateTime(newJourney);
+        RailwayException e = Assertions.assertThrows(RailwayException.class, ()->{
+            journeyManager.validateTime(newJourney);
+        },"Train must depart before it arrives.");
+        Assertions.assertEquals(e.getMessage(), "Train must depart before it arrives.");
+    }
+    /**
      * Tests adding a journey
      * @throws RailwayException
      * */
