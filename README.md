@@ -33,3 +33,9 @@ Gives full overview of all journeys in the database, and to search all journeys 
 </p>  
 
 ## Command Line Interface
+
+This application also has a simple CLI for adding, updating and deleting trains, railway stations and journeys. 
+
+<p align = "center">
+<img width="800" alt="login" src="https://user-images.githubusercontent.com/115094201/220731186-273bc3a8-9f5d-44e5-9843-b22ce67d7f6f.png">
+</p>  
