@@ -3,25 +3,14 @@ package ba.unsa.etf.rpr;
 import ba.unsa.etf.rpr.Bussiness.JourneyManager;
 import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Bussiness.TrainManager;
-import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
 import ba.unsa.etf.rpr.domain.RailwayStation;
 import ba.unsa.etf.rpr.domain.Train;
 import org.apache.commons.cli.*;
-import net.bytebuddy.asm.Advice;
-import org.apache.commons.cli.*;
-
-import java.security.spec.ECField;
 import java.sql.Date;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.sql.Time;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Stream;
 /**
  * Command Line Interface - CLI
  * @author Hana Catic
