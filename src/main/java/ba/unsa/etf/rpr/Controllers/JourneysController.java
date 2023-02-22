@@ -2,10 +2,13 @@ package ba.unsa.etf.rpr.Controllers;
 
 import ba.unsa.etf.rpr.App;
 import ba.unsa.etf.rpr.Bussiness.JourneyManager;
+import ba.unsa.etf.rpr.Bussiness.RailwayStationManager;
 import ba.unsa.etf.rpr.Controllers.Components.DoubleButtonCellFactory;
 import ba.unsa.etf.rpr.Exceptions.RailwayException;
 import ba.unsa.etf.rpr.domain.Journey;
+import ba.unsa.etf.rpr.domain.RailwayStation;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +22,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -29,6 +33,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class JourneysController {
     //manager
     private final JourneyManager journeyManager = new JourneyManager();
+    private final RailwayStationManager stationManager = new RailwayStationManager();
     //components
     public TableView journeysTable;
     public TableColumn<Journey, String> idColumn;
@@ -42,8 +47,9 @@ public class JourneysController {
     public TableColumn<Journey, Integer> actionColumn;
 
     public BorderPane journeyScreen;
+    public ComboBox<RailwayStation> stationBox;
 
-    public void initialize(){
+    public void initialize() throws RailwayException {
         idColumn.setCellValueFactory(new PropertyValueFactory<Journey, String>("id"));
         trainIdColumn.setCellValueFactory(new PropertyValueFactory<Journey, String>("train"));
         departureStationIdColumn.setCellValueFactory(new PropertyValueFactory<Journey, String>("departureStation"));
@@ -53,7 +59,7 @@ public class JourneysController {
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<Journey, Date>("arrivalDate"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<Journey, Time>("arrivalTime"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<Journey, Integer>("id"));
-
+        stationBox.setItems(FXCollections.observableList(stationManager.getAll()));
         actionColumn.setCellFactory(new DoubleButtonCellFactory(editEvent ->{
             int journeyId = Integer.parseInt(((Button) editEvent.getSource()).getUserData().toString());
             editJourneyScene(journeyId);
@@ -173,5 +179,28 @@ public class JourneysController {
         stage.show();
         Stage lastStage = (Stage) journeysTable.getScene().getWindow();
         lastStage.close();
+    }
+    /**
+     * Event handler for search by station
+     * @param actionEvent
+     * */
+    public void searchByStation(ActionEvent actionEvent) {
+        if(stationBox.getValue() == null){
+            refreshJourneys();
+        }
+        try{
+        List<Journey> journeys = journeyManager.searchByStation(stationBox.getValue());
+        journeysTable.setItems(FXCollections.observableList(journeys));
+        journeysTable.refresh();
+        } catch (RailwayException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+    /**
+     * Event handler for show journeys at all stations
+     * @param actionEvent
+     * */
+    public void showAll(ActionEvent actionEvent) {
+        refreshJourneys();
     }
 }

@@ -117,4 +117,9 @@ public class JourneyDaoSQLImpl extends AbstractDao<Journey> implements JourneyDa
         }
         return journeys;
     }
+
+    @Override
+    public List<Journey> searchByStation(RailwayStation station) throws RailwayException {
+        return executeQuery("SELECT * FROM Journeys WHERE departureStation = ? OR arrivalStation = ?", new Object[]{station.getId(), station.getId()});
+    }
 }

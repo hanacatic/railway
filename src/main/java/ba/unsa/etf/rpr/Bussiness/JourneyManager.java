@@ -106,4 +106,13 @@ public class JourneyManager {
         validateStations(departureStation, arrivalStation);
         return DaoFactory.journeyDao().search(departureStation, arrivalStation, (java.sql.Date) date, time, arrival);
     }
+    /**
+     * Searches all journeys in journeys table in database departing and arriving at a given station
+     * @param station at which to look for journeys
+     * @throws RailwayException
+     * @return list of journeys at a given railway station
+     * */
+    public List<Journey> searchByStation(RailwayStation station) throws RailwayException {
+        return DaoFactory.journeyDao().searchByStation(station);
+    }
 }

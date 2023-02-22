@@ -31,17 +31,28 @@
    <top>
       <ToolBar styleClass="Btn" BorderPane.alignment="CENTER">
         <items>
-            <ComboBox editable="true" prefWidth="150.0" promptText="railway station">
+            <ComboBox fx:id="stationBox" prefWidth="150.0" promptText="railway station">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </ComboBox>
+            <Button mnemonicParsing="false" onAction="#searchByStation" prefHeight="26.0" prefWidth="66.0" styleClass="Btn" text="Search">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#showAll" prefHeight="26.0" prefWidth="66.0" styleClass="Btn" text="Show All">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="36.0" prefWidth="30.0" />
             <Button mnemonicParsing="false" onAction="#addJourney" prefHeight="26.0" prefWidth="66.0" styleClass="Btn" text="Add">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Button>
-            <Separator layoutX="121.0" layoutY="10.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="18.0" />
+            <Separator layoutX="121.0" layoutY="10.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="42.0" />
           <Button mnemonicParsing="false" onAction="#editTrains" prefHeight="27.0" prefWidth="50.0" styleClass="Btn" text="Trains">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -52,7 +63,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Button>
-            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="36.0" prefWidth="257.0" />
+            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="36.0" prefWidth="262.0" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" styleClass="Btn" text="Log Out">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
