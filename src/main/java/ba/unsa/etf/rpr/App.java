@@ -38,9 +38,11 @@ public class App {
     private static final Option getRailwayStations = new Option("getS", "get-station", false, "Printing all railway stations from Railway database");
     private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journeys from Railway database");
     private static final Option updateTrain = new Option("updateT", "update-train", false, "Updates train in Railway database");
-    private static final Option updateStation = new Option("updateS", "update-station", false, "Updates a railway station in railway database");
+    private static final Option updateStation = new Option("updateS", "update-station", false, "Updates a railway station in Railway database");
+    private static final Option updateJourney = new Option("updateJ", "update-journey", false, "Updates a journey in Railway database");
     private static final Option deleteTrain = new Option("deleteT", "delete-train", false, "Deletes train from Railway database");
     private static final Option deleteStation = new Option("deleteS", "delete-station", false, "Deletes a railway stations from Railway database");
+    private static final Option deleteJourney = new Option("deleteJ", "delete-journey", false, "Update a journey in Railway database");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -60,6 +62,7 @@ public class App {
         options.addOption(updateStation);
         options.addOption(deleteTrain);
         options.addOption(deleteStation);
+        options.addOption(deleteJourney);
         return options;
     }
     public static Train searchThroughTrains(List<Train> trains, String trainName){
@@ -211,6 +214,17 @@ public class App {
                 System.exit(1);
             }
         }
+        else if (c.hasOption(deleteJourney.getOpt()) || c.hasOption(deleteJourney.getLongOpt())){
+            try{
+                journeyManager.delete(Integer.parseInt(c.getArgList().get(0)));
+                System.out.println("Journey has been successfully deleted!");
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
         else if (c.hasOption(getTrains.getOpt()) || c.hasOption(getTrains.getLongOpt())){
             trainManager.getAll().forEach(train -> System.out.println(train.getName()));
         }
@@ -221,7 +235,7 @@ public class App {
         }
         else  if (c.hasOption(getJourneys.getOpt()) || c.hasOption(getJourneys.getLongOpt())){
             journeyManager.getAll().forEach(journey -> {
-                System.out.println("Train: " + journey.getTrain().getName() + "    Departure: " + journey.getDepartureStation().toString() + " " + journey.getDepartureDate().toString() + " " + journey.getDepartureTime().toString() + "    Arrival: " + journey.getArrivalStation().toString() + " " + journey.getArrivalDate().toString() + " " + journey.getArrivalTime());
+                System.out.println(journey);//System.out.println("Train: " + journey.getTrain().getName() + "    Departure: " + journey.getDepartureStation().toString() + " " + journey.getDepartureDate().toString() + " " + journey.getDepartureTime().toString() + "    Arrival: " + journey.getArrivalStation().toString() + " " + journey.getArrivalDate().toString() + " " + journey.getArrivalTime());
             });
         }
         else {
