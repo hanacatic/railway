@@ -10,6 +10,8 @@ import ba.unsa.etf.rpr.domain.Train;
 import org.apache.commons.cli.*;
 import net.bytebuddy.asm.Advice;
 import org.apache.commons.cli.*;
+
+import java.security.spec.ECField;
 import java.sql.Date;
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,6 +40,7 @@ public class App {
     private static final Option updateTrain = new Option("updateT", "update-train", false, "Updates train in Railway database");
     private static final Option updateStation = new Option("updateS", "update-station", false, "Updates a railway station in railway database");
     private static final Option deleteTrain = new Option("deleteT", "delete-train", false, "Deletes train from Railway database");
+    private static final Option deleteStation = new Option("deleteS", "delete-station", false, "Deletes a railway stations from Railway database");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -56,6 +59,7 @@ public class App {
         options.addOption(updateTrain);
         options.addOption(updateStation);
         options.addOption(deleteTrain);
+        options.addOption(deleteStation);
         return options;
     }
     public static Train searchThroughTrains(List<Train> trains, String trainName){
@@ -169,11 +173,39 @@ public class App {
             }
         }
         else if (c.hasOption(deleteTrain.getOpt()) || c.hasOption(deleteTrain.getLongOpt())){
-            Train train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+            Train train = null;
+            try {
+                train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+            }
+            catch(Exception e){
+                System.out.println("There is no train with this name in the list!");
+                System.out.println("Try again!");
+                System.exit(1);
+            }
             try{
                 trainManager.delete(train.getId());
                 System.out.println("Train has been successfully deleted");
             }catch(Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
+        else if(c.hasOption(deleteStation.getOpt()) || c.hasOption(deleteStation.getLongOpt())){
+            RailwayStation station = null;
+            try{
+                station = searchThroughStations(stationManager.getAll(), c.getArgList().get(0));
+            }
+            catch(Exception e){
+                System.out.println("There is no railway station with this name in the list!");
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+            try{
+                stationManager.delete(station.getId());
+                System.out.println("Railway station has been successfully deleted!");
+            }
+            catch(Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
                 System.exit(1);
