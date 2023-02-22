@@ -29,13 +29,14 @@ public class App {
     private static final RailwayStationManager stationManager = new RailwayStationManager();
     private static final JourneyManager journeyManager = new JourneyManager();
     private static final Option addTrain = new Option("t", "add-train", false, "Adding new train to Railway database");
-    private static final Option addRailwayStation = new Option("r", "add-station", false, "Adding new railway station to Railway database");
+    private static final Option addRailwayStation = new Option("s", "add-station", false, "Adding new railway station to Railway database");
     private static final Option addJourney = new Option("j", "add-journey", false, "Adding new journey to Railway database");
 
     private static final Option getTrains = new Option("getT", "get-train", false, "Printing all trains from Railway database");
-    private static final Option getRailwayStations = new Option("getR", "get-station", false, "Printing all railway stations from Railway database");
+    private static final Option getRailwayStations = new Option("getS", "get-station", false, "Printing all railway stations from Railway database");
     private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journeys from Railway database");
     private static final Option updateTrain = new Option("updateT", "update-train", false, "Updates train in Railway database");
+    private static final Option updateStation = new Option("updateS", "update-station", false, "Updates a railway station in railway database");
     private static final Option deleteTrain = new Option("deleteT", "delete-train", false, "Deletes train from Railway database");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
@@ -53,6 +54,7 @@ public class App {
         options.addOption(getRailwayStations);
         options.addOption(getJourneys);
         options.addOption(updateTrain);
+        options.addOption(updateStation);
         options.addOption(deleteTrain);
         return options;
     }
@@ -139,13 +141,28 @@ public class App {
             }
         }
         else if (c.hasOption(updateTrain.getOpt()) || c.hasOption(updateTrain.getLongOpt())){
-            Train train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
-            train.setName(c.getArgList().get(1));
-            train.setDateBought(new Date(Integer.parseInt(c.getArgList().get(2)) - 1900, Integer.parseInt(c.getArgList().get(3)) -1, Integer.parseInt(c.getArgList().get(4))));
             try{
+                Train train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+                train.setName(c.getArgList().get(1));
+                train.setDateBought(new Date(Integer.parseInt(c.getArgList().get(2)) - 1900, Integer.parseInt(c.getArgList().get(3)) -1, Integer.parseInt(c.getArgList().get(4))));
                 trainManager.update(train);
                 System.out.println("Train has been successfully updated!");
             }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
+        else if(c.hasOption(updateStation.getOpt()) || c.hasOption(updateStation.getLongOpt())){
+            try {
+                RailwayStation station = searchThroughStations(stationManager.getAll(), c.getArgList().get(0));
+                station.setName(c.getArgList().get(1));
+                station.setAddress(c.getArgList().get(2));
+                station.setCity(c.getArgList().get(3));
+                station.setCountry(c.getArgList().get(4));
+                stationManager.update(station);
+                System.out.println("Railway station has been successfully updated!");
+            }catch(Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
                 System.exit(1);
