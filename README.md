@@ -1,5 +1,12 @@
 # Railway: Customer application with one admin user
 This is a simple three layered application in Java that allows customer to search journeys by departure station, arrival station and details of journey and has one admin that has permission to add, delete and update trains, railway stations and journeys, all information is stored in a database, with which the application communicates.
+
+### ERD
+
+<p align = "center">
+<img width="400" alt="login" src="https://user-images.githubusercontent.com/115094201/220775321-16f6f4eb-471c-4290-bc91-1138ab27a2ec.png">
+</p>  
+
 ## User Interface
 Or Home Screen consists of a form that allows user to chose a departure station, arrival station and date and time which will refer to either departure or arrival depending on the choice of arrival or departure. Search results are shown in the timetable below the form, as shown in the picture.  
 <p align = "center">
