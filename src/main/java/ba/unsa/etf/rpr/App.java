@@ -36,6 +36,7 @@ public class App {
     private static final Option getRailwayStations = new Option("getR", "get-station", false, "Printing all railway stations from Railway database");
     private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journeys from Railway database");
     private static final Option updateTrain = new Option("updateT", "update-train", false, "Updates train in Railway database");
+    private static final Option deleteTrain = new Option("deleteT", "delete-train", false, "Deletes train from Railway database");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -52,6 +53,7 @@ public class App {
         options.addOption(getRailwayStations);
         options.addOption(getJourneys);
         options.addOption(updateTrain);
+        options.addOption(deleteTrain);
         return options;
     }
     public static Train searchThroughTrains(List<Train> trains, String trainName){
@@ -144,6 +146,17 @@ public class App {
                 trainManager.update(train);
                 System.out.println("Train has been successfully updated!");
             }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
+        else if (c.hasOption(deleteTrain.getOpt()) || c.hasOption(deleteTrain.getLongOpt())){
+            Train train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+            try{
+                trainManager.delete(train.getId());
+                System.out.println("Train has been successfully deleted");
+            }catch(Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
                 System.exit(1);
