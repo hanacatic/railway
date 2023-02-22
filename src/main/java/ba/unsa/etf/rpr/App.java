@@ -33,7 +33,6 @@ public class App {
     private static final Option addTrain = new Option("t", "add-train", false, "Adding new train to Railway database");
     private static final Option addRailwayStation = new Option("s", "add-station", false, "Adding new railway station to Railway database");
     private static final Option addJourney = new Option("j", "add-journey", false, "Adding new journey to Railway database");
-
     private static final Option getTrains = new Option("getT", "get-train", false, "Printing all trains from Railway database");
     private static final Option getRailwayStations = new Option("getS", "get-station", false, "Printing all railway stations from Railway database");
     private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journeys from Railway database");
@@ -43,6 +42,7 @@ public class App {
     private static final Option deleteTrain = new Option("deleteT", "delete-train", false, "Deletes train from Railway database");
     private static final Option deleteStation = new Option("deleteS", "delete-station", false, "Deletes a railway stations from Railway database");
     private static final Option deleteJourney = new Option("deleteJ", "delete-journey", false, "Update a journey in Railway database");
+    private static final Option search = new Option("search", false, "Searches journeys connecting two given station on a given date after given time.");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -64,6 +64,7 @@ public class App {
         options.addOption(deleteTrain);
         options.addOption(deleteStation);
         options.addOption(deleteJourney);
+        options.addOption(search);
         return options;
     }
     public static Train searchThroughTrains(List<Train> trains, String trainName){
@@ -278,6 +279,35 @@ public class App {
             journeyManager.getAll().forEach(journey -> {
                 System.out.println(journey);//System.out.println("Train: " + journey.getTrain().getName() + "    Departure: " + journey.getDepartureStation().toString() + " " + journey.getDepartureDate().toString() + " " + journey.getDepartureTime().toString() + "    Arrival: " + journey.getArrivalStation().toString() + " " + journey.getArrivalDate().toString() + " " + journey.getArrivalTime());
             });
+        }
+        else if(c.hasOption(search.getOpt())){
+            try{
+                List<RailwayStation> stations = stationManager.getAll();
+                RailwayStation departureStation = null;
+                RailwayStation arrivalStation = null;
+                try{
+                    departureStation = searchThroughStations(stations, c.getArgList().get(0));
+                    arrivalStation = searchThroughStations(stations, c.getArgList().get(1));
+                }catch(Exception e){
+                    System.out.println("There is no railway station with this name in the list!");
+                    System.out.println("Try again!");
+                    System.exit(1);
+                }
+                Date date = new Date(Integer.parseInt(c.getArgList().get(2))-1900, Integer.parseInt(c.getArgList().get(3))-1, Integer.parseInt(c.getArgList().get(4)));
+                Time time = new Time( Integer.parseInt(c.getArgList().get(5)), Integer.parseInt(c.getArgList().get(6)), 0);
+                List<Journey> journeys = null;
+                if(c.getArgList().get(7).toLowerCase().equals("arrival")){
+                    journeys = journeyManager.search(departureStation, arrivalStation, date, time, true);
+                }
+                else{
+                    journeys = journeyManager.search(departureStation, arrivalStation, date, time, false);
+                }
+                journeys.stream().forEach(journey -> System.out.println(journey));
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
         }
         else {
             printFormattedOptions(options);
