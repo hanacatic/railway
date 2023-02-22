@@ -25,6 +25,9 @@ import java.util.stream.Stream;
  * @author Hana Catic
  */
 public class App {
+    private static final TrainManager trainManager = new TrainManager();
+    private static final RailwayStationManager stationManager = new RailwayStationManager();
+    private static final JourneyManager journeyManager = new JourneyManager();
     private static final Option addTrain = new Option("t", "add-train", false, "Adding new train to Railway database");
     private static final Option addRailwayStation = new Option("r", "add-station", false, "Adding new railway station to Railway database");
     private static final Option addJourney = new Option("j", "add-journey", false, "Adding new journey to Railway database");
@@ -32,6 +35,7 @@ public class App {
     private static final Option getTrains = new Option("getT", "get-train", false, "Printing all trains from Railway database");
     private static final Option getRailwayStations = new Option("getR", "get-station", false, "Printing all railway stations from Railway database");
     private static final Option getJourneys = new Option("getJ", "get-journey", false, "Printing all journeys from Railway database");
+    private static final Option updateTrain = new Option("updateT", "update-train", false, "Updates train in Railway database");
     public static void printFormattedOptions(Options options){
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -47,6 +51,7 @@ public class App {
         options.addOption(getTrains);
         options.addOption(getRailwayStations);
         options.addOption(getJourneys);
+        options.addOption(updateTrain);
         return options;
     }
     public static Train searchThroughTrains(List<Train> trains, String trainName){
@@ -65,7 +70,6 @@ public class App {
         CommandLine c = commandLineParser.parse(options, args);
         if(c.hasOption(addTrain.getOpt()) || c.hasOption(addTrain.getLongOpt())){
             try{
-                TrainManager trainManager = new TrainManager();
                 Train train = new Train();
                 train.setName(c.getArgList().get(0));
                 train.setDateBought(new Date(Integer.parseInt(c.getArgList().get(1))-1900, Integer.parseInt(c.getArgList().get(2))-1, Integer.parseInt(c.getArgList().get(3))));
@@ -80,7 +84,6 @@ public class App {
         }
         else if (c.hasOption(addRailwayStation.getOpt()) || c.hasOption(addRailwayStation.getLongOpt())){
             try{
-                RailwayStationManager stationManager = new RailwayStationManager();
                 RailwayStation station = new RailwayStation();
                 station.setName(c.getArgList().get(0));
                 station.setAddress(c.getArgList().get(1));
@@ -95,7 +98,6 @@ public class App {
             }
         }
         else if (c.hasOption(addJourney.getLongOpt()) || c.hasOption(addJourney.getLongOpt())){
-            TrainManager trainManager = new TrainManager();
             Train train = null;
             try {
                 train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
@@ -104,7 +106,6 @@ public class App {
                 System.out.println("Try again!");
                 System.exit(1);
             }
-            RailwayStationManager stationManager = new RailwayStationManager();
             List<RailwayStation> stations = stationManager.getAll();
             RailwayStation departureStation = null;
             RailwayStation arrivalStation = null;
@@ -117,7 +118,6 @@ public class App {
                 System.out.println("Try again!");
                 System.exit(1);
             }
-            JourneyManager journeyManager = new JourneyManager();
             Journey journey = new Journey();
             try{
                 journey.setTrain(train);
@@ -136,18 +136,28 @@ public class App {
                 System.exit(1);
             }
         }
+        else if (c.hasOption(updateTrain.getOpt()) || c.hasOption(updateTrain.getLongOpt())){
+            Train train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(0));
+            train.setName(c.getArgList().get(1));
+            train.setDateBought(new Date(Integer.parseInt(c.getArgList().get(2)) - 1900, Integer.parseInt(c.getArgList().get(3)) -1, Integer.parseInt(c.getArgList().get(4))));
+            try{
+                trainManager.update(train);
+                System.out.println("Train has been successfully updated!");
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
         else if (c.hasOption(getTrains.getOpt()) || c.hasOption(getTrains.getLongOpt())){
-            TrainManager trainManager = new TrainManager();
             trainManager.getAll().forEach(train -> System.out.println(train.getName()));
         }
         else if (c.hasOption(getRailwayStations.getOpt()) || c.hasOption(getRailwayStations.getLongOpt())){
-            RailwayStationManager stationManager = new RailwayStationManager();
             stationManager.getAll().forEach(station->{
                 System.out.println(station.toString());
             });
         }
         else  if (c.hasOption(getJourneys.getOpt()) || c.hasOption(getJourneys.getLongOpt())){
-            JourneyManager journeyManager = new JourneyManager();
             journeyManager.getAll().forEach(journey -> {
                 System.out.println("Train: " + journey.getTrain().getName() + "    Departure: " + journey.getDepartureStation().toString() + " " + journey.getDepartureDate().toString() + " " + journey.getDepartureTime().toString() + "    Arrival: " + journey.getArrivalStation().toString() + " " + journey.getArrivalDate().toString() + " " + journey.getArrivalTime());
             });
