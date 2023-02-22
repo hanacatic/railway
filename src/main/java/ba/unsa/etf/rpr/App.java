@@ -60,6 +60,7 @@ public class App {
         options.addOption(getJourneys);
         options.addOption(updateTrain);
         options.addOption(updateStation);
+        options.addOption(updateJourney);
         options.addOption(deleteTrain);
         options.addOption(deleteStation);
         options.addOption(deleteJourney);
@@ -170,6 +171,46 @@ public class App {
                 stationManager.update(station);
                 System.out.println("Railway station has been successfully updated!");
             }catch(Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+        }
+        else if (c.hasOption(updateJourney.getOpt()) || c.hasOption(updateJourney.getLongOpt())){
+            Train train = null;
+            try {
+                train = searchThroughTrains(trainManager.getAll(), c.getArgList().get(1));
+            }catch(Exception e) {
+                System.out.println("There is no train with this name in the list!");
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+            List<RailwayStation> stations = stationManager.getAll();
+            RailwayStation departureStation = null;
+            RailwayStation arrivalStation = null;
+            try{
+                departureStation = searchThroughStations(stations, c.getArgList().get(2));
+                arrivalStation = searchThroughStations(stations, c.getArgList().get(3));
+            }
+            catch(Exception e){
+                System.out.println("There is no railway station with this name in the list!");
+                System.out.println("Try again!");
+                System.exit(1);
+            }
+            Journey journey = new Journey();
+            try{
+                journey.setId(Integer.parseInt(c.getArgList().get(0)));
+                journey.setTrain(train);
+                journey.setDepartureStation(departureStation);
+                journey.setArrivalStation(arrivalStation);
+                journey.setDepartureDate(new Date(Integer.parseInt(c.getArgList().get(4)) - 1900, Integer.parseInt(c.getArgList().get(5)) - 1, Integer.parseInt(c.getArgList().get(6))));
+                journey.setDepartureTime(new Time(Integer.parseInt(c.getArgList().get(7)), Integer.parseInt(c.getArgList().get(8)), 0));
+                journey.setArrivalDate(new Date(Integer.parseInt(c.getArgList().get(9)) - 1900, Integer.parseInt(c.getArgList().get(10)) - 1, Integer.parseInt(c.getArgList().get(11))));
+                journey.setArrivalTime(new Time(Integer.parseInt(c.getArgList().get(12)), Integer.parseInt(c.getArgList().get(13)),0));
+                journeyManager.update(journey);
+                System.out.println("Journey has been successfully updated!");
+            }
+            catch (Exception e){
                 System.out.println(e.getMessage());
                 System.out.println("Try again!");
                 System.exit(1);
